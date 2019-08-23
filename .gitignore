@@ -1,0 +1,6 @@
+**/*.d.ts
+.cache/
+/test/coverage/
+/dist/
+/node_modules/
+tags*
