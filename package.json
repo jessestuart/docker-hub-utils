@@ -1,5 +1,5 @@
 {
-  "name": "@jesses/docker-hub-utils",
+  "name": "docker-hub-utils",
   "description": "Typescript / Node utilities for interacting with the Docker Hub API.",
   "version": "1.0.0",
   "author": "Jesse Stuart <hi@jessestuart.com>",
