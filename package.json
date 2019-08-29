@@ -4,52 +4,49 @@
   "version": "1.0.1",
   "author": "Jesse Stuart <hi@jessestuart.com>",
   "dependencies": {
-    "@babel/runtime": "7.5.5",
     "axios": "0.19.0",
     "lodash": "4.17.15",
+    "lodash-es": "4.17.15",
     "pino": "5.13.2"
   },
   "devDependencies": {
-    "@babel/cli": "7.5.5",
-    "@babel/core": "7.5.5",
-    "@babel/plugin-proposal-object-rest-spread": "7.5.5",
-    "@babel/plugin-transform-runtime": "7.5.5",
-    "@babel/preset-env": "7.5.5",
-    "@babel/preset-typescript": "7.3.3",
     "@semantic-release/git": "7.0.16",
+    "@types/axios": "0.14.0",
     "@types/jest": "24.0.18",
     "@types/lodash": "4.14.138",
-    "@types/md5": "2.1.33",
     "@types/node": "12.7.2",
     "@types/pino": "5.8.9",
     "@typescript-eslint/eslint-plugin": "2.0.0",
     "@typescript-eslint/parser": "2.0.0",
-    "babel-plugin-add-module-exports": "1.0.2",
-    "babel-plugin-lodash": "3.3.4",
-    "babel-plugin-module-resolver": "3.2.0",
-    "babel-preset-minify": "0.5.1",
     "codecov": "3.5.0",
     "concurrently": "4.1.2",
-    "dependency-cruiser": "5.1.0",
     "eslint": "6.2.2",
     "eslint-config-prettier": "6.1.0",
     "eslint-plugin-import": "2.18.2",
     "eslint-plugin-prettier": "3.1.0",
+    "husky": "3.0.4",
     "jest": "24.9.0",
-    "jest-junit": "7.0.0",
-    "md5": "2.2.1",
-    "nodemon": "1.19.1",
+    "jest-junit": "8.0.0",
     "prettier": "1.18.2",
+    "pretty-quick": "1.11.1",
     "semantic-release": "15.13.24",
+    "source-map-support": "0.5.13",
     "ts-jest": "24.0.2",
+    "tsdx": "0.9.0",
+    "tslib": "1.10.0",
     "tslint": "5.19.0",
     "tslint-config-prettier": "1.18.0",
     "typescript": "3.6.2"
   },
   "files": [
-    "dist/"
+    "dist"
   ],
-  "homepage": "https://github.com/jessestuart/gatsby-source-docker-hub#readme",
+  "homepage": "https://github.com/jessestuart/docker-hub-utils",
+  "husky": {
+    "hooks": {
+      "pre-commit": "pretty-quick --staged"
+    }
+  },
   "keywords": [
     "api",
     "docker",
@@ -59,18 +56,21 @@
     "wrapper-api"
   ],
   "license": "MIT",
+  "main": "dist/index.js",
+  "module": "dist/docker-hub-utils.esm.js",
+  "peerDependencies": {},
   "repository": {
     "type": "git",
     "url": "git+https://github.com/jessestuart/docker-hub-utils.git"
   },
   "scripts": {
-    "build": "babel --extensions '.ts' src/ --out-dir dist/",
-    "generate-types": "tsc -p tsconfig.json",
+    "build": "tsdx build",
     "lint": "eslint --quiet src/ --ext ts,tsx",
-    "prepublishOnly": "concurrently 'yarn build' && 'yarn ts:defs'",
-    "rebuild": "rm -rf dist/* && concurrently 'yarn build' 'yarn generate-types'",
+    "prepublishOnly": "yarn build",
+    "rebuild": "rm -rf dist/* && yarn build",
     "release": "yarn rebuild && semantic-release",
-    "test": "concurrently 'yarn generate-types' 'yarn jest --coverage'"
+    "start": "tsdx watch",
+    "test": "concurrently 'yarn tsc -p tsconfig.json' 'yarn jest --coverage'"
   },
-  "types": "index.d.ts"
+  "typings": "dist/index.d.ts"
 }

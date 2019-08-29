@@ -1,6 +1,9 @@
-**/*.d.ts
-.cache/
+*.log
+.DS_Store
+node_modules
+.rts2_cache_cjs
+.rts2_cache_esm
+.rts2_cache_umd
+dist/
+/.gtm/
 /test/coverage/
-/dist/
-/node_modules/
-tags*

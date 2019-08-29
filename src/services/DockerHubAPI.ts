@@ -35,6 +35,7 @@ export const fetchDockerHubToken = async (
       service: 'registry.docker.io',
     },
   })
+
   const token: string | undefined = _.get(tokenRequest, 'data.token')
   if (!token) {
     throw new Error('Unable to retrieve auth token from registry.')

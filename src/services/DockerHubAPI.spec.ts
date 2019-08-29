@@ -1,18 +1,17 @@
 import axios from 'axios'
 import _ from 'lodash'
 import fp from 'lodash/fp'
-import fixture from '../__tests__/fixtures.json'
+
 import manifestFixture from '../__tests__/manifest_fixture.json'
+import fixture from '../__tests__/repos_fixture.json'
 import { DockerHubRepo } from '../types/DockerHubRepo'
 import {
   extractRepositoryDetails,
   fetchManifestList,
   queryTopRepos,
-} from './DockerHub'
+} from './DockerHubAPI'
 
-const get = jest.spyOn(axios, 'get')
-
-const fixtureLength = _.size(fixture.data.results)
+const get = jest.spyOn(axios, 'get').mockResolvedValue({})
 
 describe('DockerHub handler', () => {
   afterEach(() => {
@@ -21,7 +20,7 @@ describe('DockerHub handler', () => {
 
   test('extractRepositoryDetails', () => {
     const repositoryDetails = extractRepositoryDetails(fixture)
-    expect(repositoryDetails).toHaveLength(fixtureLength)
+    expect(repositoryDetails).toHaveLength(_.size(fixture.data.results))
     const keys = [
       'description',
       'lastUpdated',
@@ -30,16 +29,18 @@ describe('DockerHub handler', () => {
       'starCount',
     ]
 
+    // Values are defined for each of the above keys.
     keys.forEach((key: string) => expect(_.every(repositoryDetails, key)))
   })
 
   test('queryTopRepos', async () => {
-    get.mockResolvedValue(fixture)
+    // Configure axios to return our fixtures, rather than hitting the API.
+    get.mockResolvedValueOnce(fixture)
 
     const topRepos: DockerHubRepo[] = await queryTopRepos('jessestuart')
 
     expect(get).toHaveBeenCalledTimes(1)
-    expect(topRepos).toHaveLength(fixtureLength)
+    expect(topRepos).toHaveLength(_.size(fixture.data.results))
     expect(_.sumBy(topRepos, 'pullCount')).toBe(1718496)
 
     const topRepoName = _.flow(
@@ -49,7 +50,7 @@ describe('DockerHub handler', () => {
     expect(topRepoName).toBe('owntracks')
   })
 
-  test('fetchManifestList', async () => {
+  test('fetchManifestList happy path.', async () => {
     get.mockResolvedValueOnce({ data: { token: 'FAKE_TOKEN' } })
     get.mockResolvedValueOnce(manifestFixture)
 
@@ -101,5 +102,19 @@ describe('DockerHub handler', () => {
         schemaVersion: 2,
       },
     ])
+  })
+
+  test('fetchManifestList fails when no token returned.', async () => {
+    get.mockResolvedValueOnce({ data: {} })
+    get.mockResolvedValueOnce(manifestFixture)
+
+    const topRepo = _.first(extractRepositoryDetails(fixture))
+    if (!topRepo) {
+      fail('Unable to load repos fixture.')
+      return
+    }
+
+    expect(fetchManifestList(topRepo)).rejects.toThrow()
+    expect(get).toHaveBeenCalledTimes(1)
   })
 })
