@@ -1,0 +1,16 @@
+[ver:1,total:2220]
+.gtm/terminal.app:965,1567090800:60,1567094400:905,r
+tsconfig.json:307,1567094400:307,m
+src/index.ts:188,1567094400:188,m
+dist/docker-hub-utils.cjs.development.js:160,1567094400:160,r
+src/services/DockerHubAPI.spec.ts:153,1567094400:153,m
+src/services/DockerHubAPI.ts:115,1567094400:115,m
+src/services/DockerHub.spec.ts:83,1567094400:83,d
+package.json:65,1567094400:65,m
+src/types/DockerHubRepo.ts:50,1567094400:50,m
+src/__tests__/fixtures.json:40,1567094400:40,d
+dist/index.d.ts:32,1567094400:32,r
+.git/PULLREQ_EDITMSG:30,1567094400:30,d
+dist/index.js:12,1567094400:12,r
+dist/docker-hub-utils.esm.js:12,1567094400:12,r
+src/__tests__/manifest_fixture.json:8,1567094400:8,r
