@@ -50,6 +50,12 @@ export interface DockerManifest {
   readonly schemaVersion: 1 | 2 | any
 }
 
+export interface DockerManifestList {
+  readonly manifests: DockerManifest[]
+  readonly mediaType: ManifestMediaType
+  readonly schemaVersion: 1 | 2 | any
+}
+
 export interface DockerHubRepo {
   // ========================
   // Main fields of interest
@@ -61,7 +67,9 @@ export interface DockerHubRepo {
   readonly starCount: number
   readonly user: string
 
-  manifest?: DockerManifest
+  // Manifest type *may* be nested within this interface, but is usually
+  // fetched and returned separately.
+  readonly manifests?: DockerManifestList
 
   // =============================================
   // Other stuff that comes down through the API,

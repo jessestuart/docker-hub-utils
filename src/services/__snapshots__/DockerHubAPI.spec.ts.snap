@@ -1,0 +1,62 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`DockerHub handler fetchManifestList happy path. 1`] = `
+Array [
+  Array [
+    "https://auth.docker.io/",
+    Object {
+      "params": Object {
+        "scope": "repository:jessestuart/owntracks:pull",
+        "service": "registry.docker.io",
+      },
+    },
+  ],
+  Array [
+    "https://registry-1.docker.io/v2/jessestuart/owntracks/manifests/latest",
+    Object {
+      "headers": Object {
+        "Accept": "application/vnd.docker.distribution.manifest.list.v2+json",
+        "Authorization": "Bearer FAKE_TOKEN",
+      },
+    },
+  ],
+]
+`;
+
+exports[`DockerHub handler fetchManifestList happy path. 2`] = `
+Object {
+  "manifests": Array [
+    Object {
+      "digest": "sha256:d0593f2bf35b854611dda94b5210243f8473847150d1709b12163453841bf5f8",
+      "mediaType": "application/vnd.docker.distribution.manifest.v2+json",
+      "platform": Object {
+        "architecture": "amd64",
+        "os": "linux",
+      },
+      "size": 1365,
+    },
+    Object {
+      "digest": "sha256:0ec4c38328ab0e0b8798c28384fd44bab385b8313b13aa8f494e940e83a12d69",
+      "mediaType": "application/vnd.docker.distribution.manifest.v2+json",
+      "platform": Object {
+        "architecture": "arm",
+        "os": "linux",
+      },
+      "size": 1369,
+    },
+    Object {
+      "digest": "sha256:72d730063d55fa164378188f92119e00769dbc759f95cbf1319705e90d6214ea",
+      "mediaType": "application/vnd.docker.distribution.manifest.v2+json",
+      "platform": Object {
+        "architecture": "arm64",
+        "os": "linux",
+      },
+      "size": 1369,
+    },
+  ],
+  "mediaType": "application/vnd.docker.distribution.manifest.list.v2+json",
+  "schemaVersion": 2,
+}
+`;
+
+exports[`DockerHub handler queryTopRepos 1`] = `1718496`;

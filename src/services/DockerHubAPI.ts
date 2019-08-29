@@ -1,8 +1,12 @@
 import axios from 'axios'
-import _ from 'lodash'
-import fp from 'lodash/fp'
+import camelcaseKeys from 'camelcase-keys'
+import R from 'ramda'
 
-import { DockerHubAPIRepo, DockerHubRepo } from '../types/DockerHubRepo'
+import {
+  DockerHubAPIRepo,
+  DockerHubRepo,
+  DockerManifestList,
+} from '../types/DockerHubRepo'
 import {
   DOCKER_HUB_API_AUTH_URL,
   DOCKER_HUB_API_ROOT,
@@ -36,7 +40,7 @@ export const fetchDockerHubToken = async (
     },
   })
 
-  const token: string | undefined = _.get(tokenRequest, 'data.token')
+  const token: string | undefined = R.path(['data', 'token'], tokenRequest)
   if (!token) {
     throw new Error('Unable to retrieve auth token from registry.')
   }
@@ -48,10 +52,11 @@ export const fetchDockerHubToken = async (
  * format we want to return. e.g., only extracting certain fields;
  * converting snake_case to camelCase, etc.
  */
-export const extractRepositoryDetails = _.flow(
-  fp.get('data.results'),
-  fp.map(fp.mapKeys(fp.camelCase)),
-) as (repos: any) => DockerHubRepo[]
+export const extractRepositoryDetails = (
+  repos: DockerHubAPIRepo[],
+): DockerHubRepo[] =>
+  // @ts-ignore
+  R.length(repos) > 0 ? camelcaseKeys(repos) : []
 
 /**
  * Top-level function for querying repositories.
@@ -65,7 +70,8 @@ export const queryTopRepos = async (user: string): Promise<DockerHubRepo[]> => {
     },
   )
 
-  const parsedRepos: DockerHubRepo[] = extractRepositoryDetails(repos)
+  const repoResults = R.path(['data', 'results'], repos) as DockerHubAPIRepo[]
+  const parsedRepos: DockerHubRepo[] = extractRepositoryDetails(repoResults)
   return parsedRepos
 }
 
@@ -77,22 +83,19 @@ export const queryTopRepos = async (user: string): Promise<DockerHubRepo[]> => {
  * Or the shiny new OCI distribution spec which builds on it:
  * @see https://github.com/opencontainers/distribution-spec/blob/f67bc11ba3a083a9c62f8fa53ad14c5bcf2116af/spec.md
  */
-export const fetchManifestList = async (repo: DockerHubRepo) => {
+export const fetchManifestList = async (
+  repo: DockerHubRepo,
+): Promise<DockerManifestList | undefined> => {
   // Docker Hub requires a unique token for each repo manifest queried.
   const token = await fetchDockerHubToken(repo)
 
   const manifestListURL = createManifestListURL(repo)
-  const manifestList = await axios.get(manifestListURL, {
+  const manifestListResponse = await axios.get(manifestListURL, {
     headers: {
       Accept: 'application/vnd.docker.distribution.manifest.list.v2+json',
       Authorization: `Bearer ${token}`,
     },
   })
 
-  const schemaVersion = _.get(manifestList, 'schemaVersion')
-
-  return _.get(manifestList, 'manifests').map((manifest: unknown) => ({
-    ..._.pick(manifest, ['digest', 'mediaType', 'platform']),
-    schemaVersion,
-  }))
+  return R.path(['data'], manifestListResponse)
 }
