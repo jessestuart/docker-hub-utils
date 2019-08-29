@@ -1,24 +1,30 @@
 {
-  "include": ["src/**/*"],
-  "exclude": ["node_modules/**", "src/**/*.spec.ts"],
+  "include": ["src"],
   "compilerOptions": {
-    "allowSyntheticDefaultImports": true,
-    "baseUrl": ".",
-    "declaration": true,
-    "emitDeclarationOnly": true,
+    "alwaysStrict": true,
+    "baseUrl": "./",
     "esModuleInterop": true,
-    "inlineSourceMap": true,
-    "inlineSources": true,
-    "lib": ["esnext", "es5"],
-    "module": "commonjs",
+    "importHelpers": true,
+    "lib": ["dom", "esnext"],
+    "module": "esnext",
     "moduleResolution": "node",
-    "noImplicitAny": false,
-    "outDir": "dist/",
-    "paths": { "*": ["src/*"] },
-    "removeComments": false,
+    "noFallthroughCasesInSwitch": true,
+    "noEmit": true,
+    "noImplicitAny": true,
+    "noImplicitReturns": true,
+    "noImplicitThis": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "paths": {
+      "*": ["src/*", "node_modules/*"]
+    },
     "resolveJsonModule": true,
+    "rootDir": "./",
+    "sourceMap": true,
     "strict": true,
+    "strictFunctionTypes": true,
     "strictNullChecks": true,
-    "target": "esnext"
+    "strictPropertyInitialization": true,
+    "target": "es5"
   }
 }

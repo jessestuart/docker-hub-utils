@@ -1,14 +1,14 @@
 {
   "automerge": true,
   "extends": [
-    "config:base",
-    "group:definitelyTyped",
-    "group:linters",
-    "group:jsTest",
-    "group:babelMonorepo",
     ":automergeBranchPush",
+    ":rebaseStalePrs",
     ":semanticCommits",
-    ":rebaseStalePrs"
+    "config:base",
+    "group:babelMonorepo",
+    "group:definitelyTyped",
+    "group:jsTest",
+    "group:linters"
   ],
   "gitAuthor": "jesse-b0t",
   "labels": ["renovate"],

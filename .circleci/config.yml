@@ -38,7 +38,7 @@ docker_image: &docker_image
 restore_cache: &restore_cache
   restore_cache:
     keys:
-      - dependencies-v1-{{ checksum "package.json" }}
+      - dependencies-v1-{{ checksum "yarn.lock" }}
       - dependencies-v1
 
 save_cache: &save_cache

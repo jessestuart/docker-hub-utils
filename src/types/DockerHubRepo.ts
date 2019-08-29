@@ -3,19 +3,19 @@
  * API call.
  */
 export interface DockerHubAPIRepo {
-  can_edit: boolean
-  description: string
-  is_automated: boolean
-  is_migrated: boolean
-  is_private: boolean
-  last_updated: string
-  name: string
-  namespace: string
-  pull_count: number
-  repository_type: string
-  star_count: number
-  status: number
-  user: string
+  readonly can_edit: boolean
+  readonly description: string
+  readonly is_automated: boolean
+  readonly is_migrated: boolean
+  readonly is_private: boolean
+  readonly last_updated: string
+  readonly name: string
+  readonly namespace: string
+  readonly pull_count: number
+  readonly repository_type: string
+  readonly star_count: number
+  readonly status: number
+  readonly user: string
 }
 
 /**
@@ -31,9 +31,10 @@ export enum Architecture {
   arm64 = 'arm64',
 }
 
-type ManifestMediaType =
-  | 'application/vnd.docker.distribution.manifest.v2+json'
-  | 'application/vnd.docker.distribution.manifest.list.v2+json'
+export enum ManifestMediaType {
+  Manifest = 'application/vnd.docker.distribution.manifest.v2+json',
+  ManifestList = 'application/vnd.docker.distribution.manifest.list.v2+json',
+}
 
 /**
  * Yes, there's *way* more information contained in the manifest / "fat"
@@ -41,35 +42,36 @@ type ManifestMediaType =
  * relevant section for my projects. PR's welcome.
  */
 export interface DockerManifest {
-  digest: string
-  mediaType: ManifestMediaType
-  platform: Array<{
+  readonly digest: string
+  readonly mediaType: ManifestMediaType
+  readonly platform: Array<{
     architecture: Architecture
   }>
-  schemaVersion: 1 | 2 | any
+  readonly schemaVersion: 1 | 2 | any
 }
 
 export interface DockerHubRepo {
   // ========================
   // Main fields of interest
   // ========================
-  description: string | null | undefined
-  lastUpdated: Date
+  readonly description: string | null | undefined
+  readonly lastUpdated: Date
+  readonly name: string
+  readonly pullCount: number
+  readonly starCount: number
+  readonly user: string
+
   manifest?: DockerManifest
-  name: string
-  pullCount: number
-  starCount: number
-  user: string
 
   // =============================================
   // Other stuff that comes down through the API,
   // that some may find useful
   // =============================================
-  canEdit: boolean
-  isAutomated: boolean
-  isMigrated: boolean
-  isPrivate: boolean
-  namespace: string
-  repositoryType: string
-  status: number
+  readonly canEdit: boolean
+  readonly isAutomated: boolean
+  readonly isMigrated: boolean
+  readonly isPrivate: boolean
+  readonly namespace: string
+  readonly repositoryType: string
+  readonly status: number
 }
