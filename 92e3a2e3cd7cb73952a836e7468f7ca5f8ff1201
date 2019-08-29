@@ -1,0 +1,6 @@
+[ver:1,total:1140]
+src/types/DockerHubRepo.ts:440,1567112400:220,1567116000:220,m
+src/services/DockerHubAPI.ts:380,1567112400:365,1567116000:15,m
+.gtm/terminal.app:190,1567112400:120,1567116000:70,r
+src/services/DockerHubAPI.spec.ts:115,1567116000:115,m
+src/services/__snapshots__/DockerHubAPI.spec.ts.snap:15,1567112400:15,m
