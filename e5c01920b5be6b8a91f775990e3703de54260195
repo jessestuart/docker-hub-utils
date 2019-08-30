@@ -1,0 +1,6 @@
+[ver:1,total:780]
+src/services/DockerHubAPI.spec.ts:370,1567126800:370,m
+.gtm/terminal.app:350,1567123200:60,1567126800:290,r
+src/services/DockerHubAPI.ts:20,1567126800:20,m
+src/__tests__/manifest_fixture.json:20,1567126800:20,r
+node_modules/@types/jest/index.d.ts:20,1567126800:20,r
