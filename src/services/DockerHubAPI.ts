@@ -55,8 +55,9 @@ export const fetchDockerHubToken = async (
 export const extractRepositoryDetails = (
   repos: DockerHubAPIRepo[],
 ): DockerHubRepo[] =>
-  // @ts-ignore
-  R.length(repos) > 0 ? camelcaseKeys(repos) : []
+  R.length(repos) > 0
+    ? ((camelcaseKeys(repos) as unknown) as DockerHubRepo[])
+    : []
 
 /**
  * Top-level function for querying repositories.
@@ -64,10 +65,8 @@ export const extractRepositoryDetails = (
  */
 export const queryTopRepos = async (user: string): Promise<DockerHubRepo[]> => {
   const repos: DockerHubAPIRepo[] = await axios.get(
-    `${DOCKER_HUB_API_ROOT}${user}`,
-    {
-      params: { page: 1, page_size: NUM_REPOS_TO_ANALYZE },
-    },
+    `${DOCKER_HUB_API_ROOT}repositories/${user}`,
+    { params: { page: 1, page_size: NUM_REPOS_TO_ANALYZE } },
   )
 
   const repoResults = R.path(['data', 'results'], repos) as DockerHubAPIRepo[]
@@ -96,6 +95,13 @@ export const fetchManifestList = async (
       Authorization: `Bearer ${token}`,
     },
   })
+
+  // For now, just ignore legacy V1 schema manifests. They have an entirely
+  // different response shape and it's not worth mucking up the schema to
+  // support a legacy format.
+  if (manifestListResponse.data.schemaVersion === 1) {
+    return
+  }
 
   return R.path(['data'], manifestListResponse)
 }

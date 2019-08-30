@@ -80,7 +80,7 @@ describe('DockerHub handler', () => {
     const manifestList = await fetchManifestList(topRepo)
     expect(get).toHaveBeenCalledTimes(2)
     expect(get.mock.calls).toMatchSnapshot()
-    expect(get).toHaveBeenNthCalledWith(1, 'https://auth.docker.io/', {
+    expect(get).toHaveBeenNthCalledWith(1, 'https://auth.docker.io/token', {
       params: {
         scope: 'repository:jessestuart/owntracks:pull',
         service: 'registry.docker.io',
@@ -98,6 +98,23 @@ describe('DockerHub handler', () => {
     )
 
     expect(manifestList).toMatchSnapshot()
+  })
+
+  test('fetchManifestList returns early for schemaVersion 1.', async () => {
+    get.mockResolvedValueOnce({ data: { token: 'FAKE_TOKEN' } })
+    get.mockResolvedValueOnce({ data: { schemaVersion: 1 } })
+
+    const topRepo: DockerHubRepo = R.head(
+      extractRepositoryDetails(repoFixtures),
+    )
+    if (!topRepo) {
+      fail('Unable to load repos fixture.')
+      return
+    }
+
+    const manifestList = await fetchManifestList(topRepo)
+    expect(get).toHaveBeenCalledTimes(2)
+    expect(manifestList).toBeUndefined()
   })
 
   test('fetchManifestList fails when no token returned.', async () => {

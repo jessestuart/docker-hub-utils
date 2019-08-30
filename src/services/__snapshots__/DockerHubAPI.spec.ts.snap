@@ -3,7 +3,7 @@
 exports[`DockerHub handler fetchManifestList happy path. 1`] = `
 Array [
   Array [
-    "https://auth.docker.io/",
+    "https://auth.docker.io/token",
     Object {
       "params": Object {
         "scope": "repository:jessestuart/owntracks:pull",
