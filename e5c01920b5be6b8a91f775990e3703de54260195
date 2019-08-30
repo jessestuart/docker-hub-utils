@@ -4,3 +4,10 @@ src/services/DockerHubAPI.spec.ts:370,1567126800:370,m
 src/services/DockerHubAPI.ts:20,1567126800:20,m
 src/__tests__/manifest_fixture.json:20,1567126800:20,r
 node_modules/@types/jest/index.d.ts:20,1567126800:20,r
+
+[ver:1,total:5460]
+src/services/DockerHubAPI.ts:2476,1567116000:460,1567119600:846,1567123200:1170,m
+.gtm/terminal.app:1945,1567116000:375,1567119600:1360,1567123200:210,r
+src/services/__snapshots__/DockerHubAPI.spec.ts.snap:410,1567119600:410,r
+src/types/DockerHubRepo.ts:340,1567119600:340,r
+src/utils/constants.ts:289,1567116000:245,1567119600:44,m
