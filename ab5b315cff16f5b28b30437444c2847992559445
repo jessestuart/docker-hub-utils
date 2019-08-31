@@ -1,0 +1,6 @@
+[ver:1,total:1020]
+.gtm/terminal.app:480,1567245600:90,1567306800:180,1567317600:60,1567328400:150,r
+src/services/DockerHubAPI.ts:210,1567245600:210,r
+.circleci/config.yml:150,1567317600:150,r
+src/services/DockerHubAPI.spec.ts:150,1567317600:150,r
+README.md:30,1567328400:30,r
