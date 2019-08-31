@@ -3,6 +3,8 @@ import {
   DockerHubAPIRepo,
   DockerHubRepo,
   DockerManifest,
+  DockerManifestList,
+  ManifestMediaType,
 } from './types/DockerHubRepo'
 
 import {
@@ -12,7 +14,14 @@ import {
   queryTopRepos,
 } from './services/DockerHubAPI'
 
-export { Architecture, DockerHubAPIRepo, DockerHubRepo, DockerManifest }
+export {
+  Architecture,
+  DockerHubAPIRepo,
+  DockerHubRepo,
+  DockerManifest,
+  DockerManifestList,
+  ManifestMediaType,
+}
 
 export {
   extractRepositoryDetails,
