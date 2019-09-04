@@ -94,7 +94,8 @@ export interface DockerHubRepo {
   // Main fields of interest
   // ========================
   readonly description: string | null | undefined
-  readonly lastUpdated: Date
+  // ISO8601-format string.
+  readonly lastUpdated: string
   readonly name: string
   readonly pullCount: number
   readonly starCount: number
