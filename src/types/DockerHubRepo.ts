@@ -77,7 +77,7 @@ export interface DockerManifest {
   readonly digest: string
   readonly mediaType: ManifestMediaType
   readonly platform: Array<{
-    os: string
+    os: OS
     architecture: Architecture
   }>
   readonly schemaVersion: 1 | 2 | any
@@ -108,11 +108,11 @@ export interface DockerHubRepo {
   // Other stuff that comes down through the API,
   // that some may find useful
   // =============================================
-  readonly canEdit: boolean
-  readonly isAutomated: boolean
-  readonly isMigrated: boolean
-  readonly isPrivate: boolean
-  readonly namespace: string
-  readonly repositoryType: string
-  readonly status: number
+  readonly canEdit?: boolean
+  readonly isAutomated?: boolean
+  readonly isMigrated?: boolean
+  readonly isPrivate?: boolean
+  readonly namespace?: string
+  readonly repositoryType?: string
+  readonly status?: number
 }
