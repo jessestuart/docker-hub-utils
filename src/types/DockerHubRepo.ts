@@ -19,17 +19,49 @@ export interface DockerHubAPIRepo {
 }
 
 /**
- * Enum representing the architecture defined in part of an OCI image's
+ * Union type representing the architecture defined in part of an OCI image's
  * manifest list.
  *
- * There are, of course, a shit ton of other supported architectures.
- * These are just the ones I've found to be most relevant / common.
+ * As specified in the Docker Manifest spec, any valid GOARCH values are valid
+ * image architecture values, and vice versa:
+ * > The platform object describes the platform which the image in the manifest
+ * > runs on. A full list of valid operating system and architecture values are
+ * > listed in the Go language documentation for $GOOS and $GOARCH
+ * @see https://docs.docker.com/registry/spec/manifest-v2-2/#manifest-list-field-descriptions
  */
-export enum Architecture {
-  amd64 = 'amd64',
-  arm = 'arm',
-  arm64 = 'arm64',
-}
+export type Architecture =
+  | '386'
+  | 'amd64'
+  | 'arm'
+  | 'arm64'
+  | 'mips'
+  | 'mips64'
+  | 'mips64le'
+  | 'mipsle'
+  | 'ppc64'
+  | 'ppc64le'
+  | 's390x'
+  | 'wasm'
+
+/**
+ * Union type representing the OS defined in part of an OCI image's
+ * manifest list.
+ * See the docs for the `Architecture` type above for more info.
+ */
+export type OS =
+  | 'aix'
+  | 'android'
+  | 'darwin'
+  | 'dragonfly'
+  | 'freebsd'
+  | 'illumos'
+  | 'js'
+  | 'linux'
+  | 'netbsd'
+  | 'openbsd'
+  | 'plan9'
+  | 'solaris'
+  | 'windows'
 
 export enum ManifestMediaType {
   Manifest = 'application/vnd.docker.distribution.manifest.v2+json',
@@ -45,6 +77,7 @@ export interface DockerManifest {
   readonly digest: string
   readonly mediaType: ManifestMediaType
   readonly platform: Array<{
+    os: string
     architecture: Architecture
   }>
   readonly schemaVersion: 1 | 2 | any
@@ -69,7 +102,7 @@ export interface DockerHubRepo {
 
   // Manifest type *may* be nested within this interface, but is usually
   // fetched and returned separately.
-  readonly manifests?: DockerManifestList
+  readonly manifestList?: DockerManifestList
 
   // =============================================
   // Other stuff that comes down through the API,
