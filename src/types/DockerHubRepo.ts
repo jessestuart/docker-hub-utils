@@ -1,3 +1,5 @@
+import { DateTime } from 'luxon'
+
 /**
  * This is a direct representation of what we get back from the `/repositories`
  * API call.
@@ -94,8 +96,7 @@ export interface DockerHubRepo {
   // Main fields of interest
   // ========================
   readonly description: string | null | undefined
-  // ISO8601-format string.
-  readonly lastUpdated: string
+  readonly lastUpdated: DateTime
   readonly name: string
   readonly pullCount: number
   readonly starCount: number

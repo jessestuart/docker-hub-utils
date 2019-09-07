@@ -1,5 +1,6 @@
 import axios from 'axios'
 import camelcaseKeys from 'camelcase-keys'
+import { DateTime } from 'luxon'
 import R from 'ramda'
 
 import {
@@ -12,10 +13,6 @@ import {
   DOCKER_HUB_API_ROOT,
 } from '../utils/constants'
 
-// NOTE: Arbitrarily chosen # of repos to query. This should be
-//       parameterized and allow pagination.
-const NUM_REPOS_TO_ANALYZE = 30
-
 /**
  * Currently only supports fetching the manifest for the `latest` tag; in
  * reality, we can pass any valid content digest[1] to retrieve the manifest(s)
@@ -23,8 +20,11 @@ const NUM_REPOS_TO_ANALYZE = 30
  *
  * [1]: https://github.com/opencontainers/distribution-spec/blob/master/spec.md#content-digests
  */
-const createManifestListURL = (repo: DockerHubRepo) =>
+const createManifestListURL = (repo: DockerHubRepo): string =>
   `https://registry-1.docker.io/v2/${repo.user}/${repo.name}/manifests/latest`
+
+const createUserReposListURL = (user: string): string =>
+  `${DOCKER_HUB_API_ROOT}repositories/${user}`
 
 /**
  * The OCI distribution spec requires a unique token for each repo manifest queried.
@@ -54,24 +54,52 @@ export const fetchDockerHubToken = async (
  */
 export const extractRepositoryDetails = (
   repos: DockerHubAPIRepo[],
-): DockerHubRepo[] =>
-  R.length(repos) > 0
-    ? ((camelcaseKeys(repos) as unknown) as DockerHubRepo[])
-    : []
+  lastUpdatedSince?: DateTime,
+): DockerHubRepo[] => {
+  const parsedRepos: DockerHubRepo[] = camelcaseKeys(repos).map(repo => {
+    const lastUpdated: string | undefined = R.path(['lastUpdated'], repo)
+    const lastUpdatedDateTime = lastUpdated
+      ? DateTime.fromISO(lastUpdated).toUTC()
+      : null
+    return ({
+      ...repo,
+      lastUpdated: lastUpdatedDateTime,
+    } as unknown) as DockerHubRepo
+  })
+
+  return R.isNil(lastUpdatedSince)
+    ? parsedRepos
+    : parsedRepos.filter(repo => repo.lastUpdated > lastUpdatedSince)
+}
 
 /**
  * Top-level function for querying repositories.
  * @param user The Docker Hub username or org name to query for.
  */
-export const queryTopRepos = async (user: string): Promise<DockerHubRepo[]> => {
-  const repos: DockerHubAPIRepo[] = await axios.get(
-    `${DOCKER_HUB_API_ROOT}repositories/${user}`,
-    { params: { page: 1, page_size: NUM_REPOS_TO_ANALYZE } },
-  )
+export const queryTopRepos = async ({
+  lastUpdatedSince,
+  numRepos = 100,
+  user,
+}: {
+  lastUpdatedSince?: DateTime
+  numRepos?: number
+  user: string
+}): Promise<DockerHubRepo[]> => {
+  if (numRepos > 100) {
+    throw new RangeError('Number of repos to query cannot exceed 100.')
+  }
 
-  const repoResults = R.path(['data', 'results'], repos) as DockerHubAPIRepo[]
-  const parsedRepos: DockerHubRepo[] = extractRepositoryDetails(repoResults)
-  return parsedRepos
+  const listReposURL = createUserReposListURL(user)
+  const repos = await axios.get(listReposURL, {
+    params: { page: 1, page_size: numRepos },
+  })
+
+  const repoResults: DockerHubAPIRepo[] = R.path(
+    ['data', 'results'],
+    repos,
+  ) as DockerHubAPIRepo[]
+
+  return extractRepositoryDetails(repoResults, lastUpdatedSince)
 }
 
 /**
@@ -100,7 +128,7 @@ export const fetchManifestList = async (
   // different response shape and it's not worth mucking up the schema to
   // support a legacy format.
   if (manifestListResponse.data.schemaVersion === 1) {
-    return
+    throw new Error('Schema version 1 is unsupported.')
   }
 
   return R.path(['data'], manifestListResponse)

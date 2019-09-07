@@ -6,6 +6,7 @@
   "dependencies": {
     "axios": "0.19.0",
     "camelcase-keys": "6.0.1",
+    "luxon": "1.17.2",
     "pino": "5.13.2",
     "ramda": "0.26.1"
   },
@@ -13,11 +14,12 @@
     "@semantic-release/git": "7.0.16",
     "@types/axios": "0.14.0",
     "@types/jest": "24.0.18",
+    "@types/luxon": "1.15.2",
     "@types/node": "12.7.4",
     "@types/pino": "5.8.10",
     "@types/ramda": "0.26.21",
-    "@typescript-eslint/eslint-plugin": "2.1.0",
-    "@typescript-eslint/parser": "2.1.0",
+    "@typescript-eslint/eslint-plugin": "canary",
+    "@typescript-eslint/parser": "canary",
     "codecov": "3.5.0",
     "concurrently": "4.1.2",
     "eslint": "6.3.0",
@@ -65,12 +67,13 @@
   },
   "scripts": {
     "build": "tsdx build",
+    "ci": "JEST_JUNIT_OUTPUT=reports/junit/js-test-results.xml jest --ci --runInBand --coverage",
     "lint": "eslint --quiet src/ --ext ts,tsx",
     "prepublishOnly": "yarn build",
     "rebuild": "rm -rf dist/* && yarn build",
     "release": "yarn rebuild && semantic-release",
     "start": "tsdx watch",
-    "test": "concurrently 'yarn tsc -p tsconfig.json' 'yarn jest --coverage'"
+    "test": "concurrently 'yarn tsc -p tsconfig.json' 'yarn jest --cache --coverage'"
   },
   "typings": "dist/index.d.ts"
 }
