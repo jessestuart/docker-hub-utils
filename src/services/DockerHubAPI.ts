@@ -2,6 +2,7 @@ import axios from 'axios'
 import camelcaseKeys from 'camelcase-keys'
 import { DateTime } from 'luxon'
 import R from 'ramda'
+import log from '../utils/log'
 
 import {
   DockerHubAPIRepo,
@@ -56,6 +57,9 @@ export const extractRepositoryDetails = (
   repos: DockerHubAPIRepo[],
   lastUpdatedSince?: DateTime,
 ): DockerHubRepo[] => {
+  if (!repos || R.isEmpty(repos)) {
+    return []
+  }
   const parsedRepos: DockerHubRepo[] = camelcaseKeys(repos).map(repo => {
     const lastUpdated: string | undefined = R.path(['lastUpdated'], repo)
     const lastUpdatedDateTime = lastUpdated
@@ -123,12 +127,12 @@ export const fetchManifestList = async (
       Authorization: `Bearer ${token}`,
     },
   })
-
   // For now, just ignore legacy V1 schema manifests. They have an entirely
   // different response shape and it's not worth mucking up the schema to
   // support a legacy format.
   if (manifestListResponse.data.schemaVersion === 1) {
-    throw new Error('Schema version 1 is unsupported.')
+    log.info('Schema version 1 is unsupported.', repo.name)
+    return
   }
 
   return R.path(['data'], manifestListResponse)

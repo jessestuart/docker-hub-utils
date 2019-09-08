@@ -139,8 +139,8 @@ describe('DockerHub handler', () => {
       extractRepositoryDetails(repoFixtures),
     )
 
-    const manifestListRequest = fetchManifestList(topRepo)
-    expect(manifestListRequest).rejects.toThrow()
+    const manifestList = await fetchManifestList(topRepo)
+    expect(manifestList).toBeUndefined()
   })
 
   // eslint-disable-next-line

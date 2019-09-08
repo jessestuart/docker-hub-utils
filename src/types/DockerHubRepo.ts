@@ -31,39 +31,41 @@ export interface DockerHubAPIRepo {
  * > listed in the Go language documentation for $GOOS and $GOARCH
  * @see https://docs.docker.com/registry/spec/manifest-v2-2/#manifest-list-field-descriptions
  */
-export type Architecture =
-  | '386'
-  | 'amd64'
-  | 'arm'
-  | 'arm64'
-  | 'mips'
-  | 'mips64'
-  | 'mips64le'
-  | 'mipsle'
-  | 'ppc64'
-  | 'ppc64le'
-  | 's390x'
-  | 'wasm'
+export enum Architecture {
+  i386 = '386',
+  amd64 = 'amd64',
+  arm = 'arm',
+  arm64 = 'arm64',
+  mips = 'mips',
+  mips64 = 'mips64',
+  mips64le = 'mips64le',
+  mipsle = 'mipsle',
+  ppc64 = 'ppc64',
+  ppc64le = 'ppc64le',
+  s390x = 's390x',
+  wasm = 'wasm',
+}
 
 /**
  * Union type representing the OS defined in part of an OCI image's
  * manifest list.
  * See the docs for the `Architecture` type above for more info.
  */
-export type OS =
-  | 'aix'
-  | 'android'
-  | 'darwin'
-  | 'dragonfly'
-  | 'freebsd'
-  | 'illumos'
-  | 'js'
-  | 'linux'
-  | 'netbsd'
-  | 'openbsd'
-  | 'plan9'
-  | 'solaris'
-  | 'windows'
+export enum OS {
+  aix = 'aix',
+  android = 'android',
+  darwin = 'darwin',
+  dragonfly = 'dragonfly',
+  freebsd = 'freebsd',
+  illumos = 'illumos',
+  js = 'js',
+  linux = 'linux',
+  netbsd = 'netbsd',
+  openbsd = 'openbsd',
+  plan9 = 'plan9',
+  solaris = 'solaris',
+  windows = 'windows',
+}
 
 export enum ManifestMediaType {
   Manifest = 'application/vnd.docker.distribution.manifest.v2+json',
@@ -79,10 +81,10 @@ export interface DockerManifest {
   readonly digest: string
   readonly mediaType: ManifestMediaType
   readonly platform: Array<{
-    os: OS
     architecture: Architecture
+    os: OS
   }>
-  readonly schemaVersion: 1 | 2 | any
+  readonly schemaVersion: 1 | 2 | number
 }
 
 export interface DockerManifestList {
