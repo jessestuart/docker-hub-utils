@@ -38,6 +38,7 @@
     "tslib": "1.10.0",
     "tslint": "5.20.0",
     "tslint-config-prettier": "1.18.0",
+    "typedoc": "0.15.0",
     "typescript": "3.6.2"
   },
   "files": [
@@ -68,6 +69,7 @@
   "scripts": {
     "build": "tsdx build",
     "ci": "JEST_JUNIT_OUTPUT=reports/junit/js-test-results.xml jest --ci --runInBand --coverage --reporters=default --reporters=jest-junit",
+    "docs": "typedoc --mode modules --out public",
     "lint": "eslint --quiet src/ --ext ts,tsx",
     "prepublishOnly": "yarn build",
     "push": "yarn build && yalc push",
