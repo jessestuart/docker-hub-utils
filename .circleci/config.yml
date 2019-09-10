@@ -1,4 +1,5 @@
-version: 2.1
+# version: 2.1
+version: 2.0
 
 # ====================
 # WORKFLOW DECLARATION
@@ -79,11 +80,13 @@ jobs:
     steps:
       - checkout
       - *restore_cache
+      - run: mkdir -p /root/docker-hub-utils/reports/junit/
       - run:
           name: Run jest test suite & upload results.
-          command: |
-            yarn ci
-            yarn codecov
+          command: yarn ci && yarn codecov
+          environment:
+            JEST_JUNIT_OUTPUT_DIR: 'reports/junit/'
+            JEST_JUNIT_OUTPUT_NAME: 'js-test-results.xml'
       - store_test_results:
           path: reports/junit/
       - store_artifacts:

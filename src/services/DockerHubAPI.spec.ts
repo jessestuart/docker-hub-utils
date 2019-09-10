@@ -4,7 +4,9 @@ import R from 'ramda'
 
 import manifestFixture from '../__tests__/manifest_fixture.json'
 import fixture from '../__tests__/repos_fixture.json'
+import repoFixturesInvalid from '../__tests__/repos_fixtures_invalid.json'
 import { DockerHubRepo } from '../types/DockerHubRepo'
+import log from '../utils/log'
 import {
   extractRepositoryDetails,
   fetchManifestList,
@@ -12,6 +14,7 @@ import {
 } from './DockerHubAPI'
 
 const get = jest.spyOn(axios, 'get')
+const logInfo = jest.spyOn(log, 'info')
 
 const repoFixtures = fixture.data.results
 
@@ -83,6 +86,32 @@ describe('DockerHub handler', () => {
     expect(topRepos.length).toBeLessThan(repoFixtures.length)
   })
 
+  test('queryTopRepos with invalid data (lastUpdated undefined)', async () => {
+    get.mockResolvedValueOnce(repoFixturesInvalid)
+
+    const topRepos: DockerHubRepo[] = await queryTopRepos({
+      lastUpdatedSince: DateTime.fromISO('2019-06-05'),
+      numRepos: 25,
+      user: 'jessestuart',
+    })
+
+    expect(get).toHaveBeenCalledTimes(1)
+    expect(topRepos).toMatchSnapshot()
+    expect(topRepos.length).toBe(0)
+  })
+
+  test('queryTopRepos with no numRepos specified', async () => {
+    get.mockResolvedValueOnce(fixture)
+
+    const topRepos: DockerHubRepo[] = await queryTopRepos({
+      lastUpdatedSince: DateTime.fromISO('2019-06-05'),
+      user: 'jessestuart',
+    })
+
+    expect(get).toHaveBeenCalledTimes(1)
+    expect(topRepos).toMatchSnapshot()
+  })
+
   test('queryTopRepos fails if >100 repos requested.', () => {
     get.mockResolvedValueOnce(fixture)
 
@@ -141,6 +170,7 @@ describe('DockerHub handler', () => {
 
     const manifestList = await fetchManifestList(topRepo)
     expect(manifestList).toBeUndefined()
+    expect(logInfo).toHaveBeenCalledTimes(1)
   })
 
   // eslint-disable-next-line
