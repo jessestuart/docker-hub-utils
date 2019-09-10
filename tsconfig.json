@@ -5,16 +5,10 @@
     "baseUrl": "./",
     "esModuleInterop": true,
     "importHelpers": true,
-    "lib": ["dom", "esnext"],
-    "module": "es2015",
+    "lib": ["esnext"],
+    "module": "esnext",
     "moduleResolution": "node",
-    "noFallthroughCasesInSwitch": true,
     "noEmit": true,
-    "noImplicitAny": true,
-    "noImplicitReturns": true,
-    "noImplicitThis": true,
-    "noUnusedLocals": true,
-    "noUnusedParameters": true,
     "paths": {
       "*": ["src/*", "node_modules/*"]
     },
@@ -24,7 +18,6 @@
     "strict": true,
     "strictFunctionTypes": true,
     "strictNullChecks": true,
-    "strictPropertyInitialization": true,
-    "target": "es5"
+    "strictPropertyInitialization": true
   }
 }
