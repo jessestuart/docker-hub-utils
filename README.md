@@ -15,15 +15,12 @@
 
 ### What is this?
 
-The `docker-hub-utils` package provides utilities functions wrapping the Docker
-Hub API, which provides only trivial support for filtering queries, and can be
-quite verbose when e.g., fetching [Manifest Lists][docker] to determine which
-architectures a given image supports.
-
-This was primarily designed to be used in the implementation of the
-[`docker-hub-graphql-api`][github 2] project, which provides a convenient
-GraphQL abstraction layer over Docker Hub's REST API; but may also be used as a
-standalone utility library.
+`docker-hub-utils` is an [NPM package][npm-link] (packaged to work both in
+`node.js` as well as in the browser), providing utility functions wrapping the
+[Docker Hub API][docker 2]. This was created because the native API provides
+little to no support for basic operations like filtering queries, and can be
+quite verbose when e.g., fetching [Manifest Lists][docker], which is required to
+determine which architectures a given image supports.
 
 ---
 
@@ -41,12 +38,13 @@ You can see examples of these operations in use within the
 
 [circleci-badge]:
   https://circleci.com/gh/jessestuart/docker-hub-utils.svg?style=shield
-[codecov]:
-  https://codecov.io/gh/jessestuart/docker-hub-utils/branch/master/graph/badge.svg
 [circleci-link]: https://circleci.com/gh/jessestuart/docker-hub-utils
 [codecov 2]: https://codecov.io/gh/jessestuart/docker-hub-utils
+[codecov]:
+  https://codecov.io/gh/jessestuart/docker-hub-utils/branch/master/graph/badge.svg
+[docker 2]: https://docs.docker.com/registry/spec/api/
 [docker]: https://docs.docker.com/registry/spec/manifest-v2-2/
-[github]: https://github.com/jessestuart/multiar.ch
 [github 2]: https://github.com/jessestuart/docker-hub-graphql-api
+[github]: https://github.com/jessestuart/multiar.ch
 [npm-badge]: https://img.shields.io/npm/v/docker-hub-utils.svg
 [npm-link]: https://www.npmjs.com/package/docker-hub-utils
