@@ -1,0 +1,11 @@
+[ver:1,total:1380]
+.gtm/terminal.app:485,1568088000:170,1568091600:315,r
+src/services/DockerHubAPI.ts:200,1568091600:200,r
+src/services/DockerHubAPI.spec.ts:175,1568091600:175,m
+src/services/FetchManifestList.spec.ts:170,1568091600:170,d
+.circleci/config.yml:170,1568088000:80,1568091600:90,m
+src/services/QueryTopRepos.spec.ts:60,1568091600:60,d
+package.json:50,1568088000:50,m
+.gitignore:40,1568091600:40,m
+src/services/DockerHubAPI.spec.ts.bak:15,1568091600:15,r
+src/services/ExtractRepositoryDetails.spec.ts:15,1568091600:15,d
