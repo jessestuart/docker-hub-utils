@@ -198,4 +198,13 @@ describe('DockerHub handler', () => {
     const tags = await queryTags(repo)
     expect(tags).toMatchSnapshot()
   })
+
+  test('queryTags happy path.', async () => {
+    get.mockResolvedValueOnce([])
+    const repos = R.path(['data', 'results'], fixture)
+    // @ts-ignore
+    const repo: DockerHubRepo = R.find(R.propEq('name', 'minio'))(repos)
+    const tags = await queryTags(repo)
+    expect(tags).toHaveLength(0)
+  })
 })

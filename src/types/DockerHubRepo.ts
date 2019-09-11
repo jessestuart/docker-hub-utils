@@ -120,3 +120,24 @@ export interface DockerHubRepo {
   readonly repositoryType?: string
   readonly status?: number
 }
+
+export interface Tag {
+  creator: number
+  fullSize: number
+  id: number
+  images: TagElement[]
+  lastUpdated: Date
+  lastUpdater: number
+  lastUpdaterUsername: string
+  name: string
+  repository: number
+  v2: boolean
+}
+
+export interface TagElement {
+  architecture: Architecture
+  digest: string
+  features: string
+  os: OS
+  size: number
+}

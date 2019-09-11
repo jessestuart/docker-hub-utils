@@ -8,6 +8,7 @@ import {
   DockerHubAPIRepo,
   DockerHubRepo,
   DockerManifestList,
+  Tag,
 } from '../types/DockerHubRepo'
 import {
   DOCKER_HUB_API_AUTH_URL,
@@ -21,14 +22,8 @@ import {
  *
  * [1]: https://github.com/opencontainers/distribution-spec/blob/master/spec.md#content-digests
  */
-const createManifestListURL = ({
-  repo,
-  tag = 'latest',
-}: {
-  repo: DockerHubRepo
-  tag?: string
-}): string =>
-  `https://registry-1.docker.io/v2/${repo.user}/${repo.name}/manifests/${tag}`
+const createManifestListURL = ({ repo }: { repo: DockerHubRepo }): string =>
+  `https://registry-1.docker.io/v2/${repo.user}/${repo.name}/manifests/latest`
 
 const createUserReposListURL = (user: string): string =>
   `${DOCKER_HUB_API_ROOT}repositories/${user}`
@@ -112,11 +107,13 @@ export const queryTopRepos = async ({
   return extractRepositoryDetails(repoResults, lastUpdatedSince)
 }
 
-export const queryTags = async (repo: DockerHubRepo) => {
+export const queryTags = async (repo: DockerHubRepo): Promise<Tag[]> => {
   const repoUrl = createUserReposListURL(repo.user)
   const tagsUrl = `${repoUrl}/${repo.name}/tags?page_size=100`
-  const tags = await axios.get(tagsUrl)
-  return R.path(['data', 'results'], tags)
+  const tagsResults = await axios.get(tagsUrl)
+  const tags = R.path(['data', 'results'], tagsResults)
+  // @ts-ignore
+  return tags ? camelcaseKeys(tags) : []
 }
 
 /**
