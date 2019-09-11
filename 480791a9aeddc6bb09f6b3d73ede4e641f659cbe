@@ -1,0 +1,8 @@
+[ver:1,total:1440]
+.gtm/terminal.app:830,1568178000:830,r
+src/services/DockerHubAPI.ts:215,1568178000:215,m
+image.ts:115,1568178000:115,d
+src/types/DockerHubRepo.ts:105,1568178000:105,m
+tags.json:75,1568178000:75,d
+src/services/DockerHubAPI.spec.ts:60,1568178000:60,m
+src/services/__snapshots__/DockerHubAPI.spec.ts.snap:40,1568178000:40,m
