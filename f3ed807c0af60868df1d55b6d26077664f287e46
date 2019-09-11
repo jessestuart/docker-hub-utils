@@ -1,0 +1,12 @@
+[ver:1,total:6660]
+.gtm/terminal.app:3277,1568181600:582,1568185200:750,1568188800:1345,1568192400:540,1568203200:60,r
+src/services/DockerHubAPI.ts:1960,1568181600:490,1568185200:620,1568188800:850,r
+src/services/DockerHubAPI.spec.ts:745,1568181600:220,1568185200:50,1568188800:475,r
+src/types/DockerHubRepo.ts:290,1568181600:290,r
+package.json:184,1568181600:184,m
+src/index.ts:80,1568181600:80,r
+.circleci/config.yml:54,1568181600:54,r
+nodemon.json:20,1568185200:20,d
+dist/index.d.ts:20,1568181600:20,r
+tsconfig.json:15,1568188800:15,r
+src/services/__snapshots__/DockerHubAPI.spec.ts.snap:15,1568188800:15,r
