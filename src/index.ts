@@ -5,6 +5,7 @@ import {
   DockerManifest,
   DockerManifestList,
   ManifestMediaType,
+  Tag,
 } from './types/DockerHubRepo'
 
 import {
@@ -22,6 +23,7 @@ export {
   DockerManifest,
   DockerManifestList,
   ManifestMediaType,
+  Tag,
 }
 
 export {
