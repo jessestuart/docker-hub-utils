@@ -17,6 +17,7 @@ module.exports = {
     node: true,
   },
   rules: {
+    '@typescript-eslint/ban-ts-ignore': ['off'],
     '@typescript-eslint/camelcase': ['off'],
     '@typescript-eslint/explicit-function-return-type': ['off'],
     '@typescript-eslint/unbound-method': ['off'],

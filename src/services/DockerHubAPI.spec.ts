@@ -5,11 +5,13 @@ import R from 'ramda'
 import manifestFixture from '../__tests__/manifest_fixture.json'
 import fixture from '../__tests__/repos_fixture.json'
 import repoFixturesInvalid from '../__tests__/repos_fixtures_invalid.json'
+import tagsFixture from '../__tests__/tags_fixture.json'
 import { DockerHubRepo } from '../types/DockerHubRepo'
 import log from '../utils/log'
 import {
   extractRepositoryDetails,
   fetchManifestList,
+  queryTags,
   queryTopRepos,
 } from './DockerHubAPI'
 
@@ -186,5 +188,14 @@ describe('DockerHub handler', () => {
 
     expect(fetchManifestList(topRepo)).rejects.toThrow()
     expect(get).toHaveBeenCalledTimes(1)
+  })
+
+  test('queryTags happy path.', async () => {
+    get.mockResolvedValueOnce(tagsFixture)
+    const repos = R.path(['data', 'results'], fixture)
+    // @ts-ignore
+    const repo: DockerHubRepo = R.find(R.propEq('name', 'minio'))(repos)
+    const tags = await queryTags(repo)
+    expect(tags).toMatchSnapshot()
   })
 })

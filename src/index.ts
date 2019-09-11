@@ -11,6 +11,7 @@ import {
   extractRepositoryDetails,
   fetchDockerHubToken,
   fetchManifestList,
+  queryTags,
   queryTopRepos,
 } from './services/DockerHubAPI'
 
@@ -27,5 +28,6 @@ export {
   extractRepositoryDetails,
   fetchDockerHubToken,
   fetchManifestList,
+  queryTags,
   queryTopRepos,
 }

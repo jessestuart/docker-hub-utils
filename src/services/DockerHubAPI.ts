@@ -21,8 +21,14 @@ import {
  *
  * [1]: https://github.com/opencontainers/distribution-spec/blob/master/spec.md#content-digests
  */
-const createManifestListURL = (repo: DockerHubRepo): string =>
-  `https://registry-1.docker.io/v2/${repo.user}/${repo.name}/manifests/latest`
+const createManifestListURL = ({
+  repo,
+  tag = 'latest',
+}: {
+  repo: DockerHubRepo
+  tag?: string
+}): string =>
+  `https://registry-1.docker.io/v2/${repo.user}/${repo.name}/manifests/${tag}`
 
 const createUserReposListURL = (user: string): string =>
   `${DOCKER_HUB_API_ROOT}repositories/${user}`
@@ -106,6 +112,13 @@ export const queryTopRepos = async ({
   return extractRepositoryDetails(repoResults, lastUpdatedSince)
 }
 
+export const queryTags = async (repo: DockerHubRepo) => {
+  const repoUrl = createUserReposListURL(repo.user)
+  const tagsUrl = `${repoUrl}/${repo.name}/tags?page_size=100`
+  const tags = await axios.get(tagsUrl)
+  return R.path(['data', 'results'], tags)
+}
+
 /**
  * Queries the Docker Hub API to retrieve a "fat manifest", an object of
  * `Content-Type` `application/vnd.docker.distribution.manifest.list.v2+json/`.
@@ -120,7 +133,7 @@ export const fetchManifestList = async (
   // Docker Hub requires a unique token for each repo manifest queried.
   const token = await fetchDockerHubToken(repo)
 
-  const manifestListURL = createManifestListURL(repo)
+  const manifestListURL = createManifestListURL({ repo })
   const manifestListResponse = await axios.get(manifestListURL, {
     headers: {
       Accept: 'application/vnd.docker.distribution.manifest.list.v2+json',
