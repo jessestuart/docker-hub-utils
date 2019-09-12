@@ -1,5 +1,3 @@
-import { DateTime } from 'luxon'
-
 /**
  * This is a direct representation of what we get back from the `/repositories`
  * API call.
@@ -98,7 +96,7 @@ export interface DockerHubRepo {
   // Main fields of interest
   // ========================
   readonly description: string | null | undefined
-  readonly lastUpdated: DateTime
+  readonly lastUpdated: string
   readonly name: string
   readonly pullCount: number
   readonly starCount: number
@@ -126,7 +124,7 @@ export interface Tag {
   fullSize: number
   id: number
   images: TagElement[]
-  lastUpdated: Date
+  lastUpdated: string
   lastUpdater: number
   lastUpdaterUsername: string
   name: string

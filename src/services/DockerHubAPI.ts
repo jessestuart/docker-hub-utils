@@ -61,32 +61,38 @@ export const extractRepositoryDetails = (
   if (!repos || R.isEmpty(repos)) {
     return []
   }
-  const parsedRepos: DockerHubRepo[] = camelcaseKeys(repos).map(repo => {
-    const lastUpdated: string | undefined = R.path(['lastUpdated'], repo)
-    const lastUpdatedDateTime = lastUpdated
-      ? DateTime.fromISO(lastUpdated).toUTC()
-      : null
-    return ({
-      ...repo,
-      lastUpdated: lastUpdatedDateTime,
-    } as unknown) as DockerHubRepo
-  })
 
-  return R.isNil(lastUpdatedSince)
-    ? parsedRepos
-    : parsedRepos.filter(repo => repo.lastUpdated > lastUpdatedSince)
+  const parsedRepos: DockerHubRepo[] = (camelcaseKeys(
+    repos,
+  ) as unknown) as DockerHubRepo[]
+
+  if (R.isNil(lastUpdatedSince)) {
+    return parsedRepos
+  }
+
+  return parsedRepos.filter(
+    repo => DateTime.fromISO(repo.lastUpdated) < lastUpdatedSince,
+  )
 }
 
 /**
  * Top-level function for querying repositories.
- * @param user The Docker Hub username or org name to query for.
+ *
+ * @TODO Rename to just `queryRepos`.
+ *
+ * @param user The DockerHub username or org name to query for.
+ * @param name The DockerHub repo name -- restrict to this single repo.
+ * @param numRepos The number of repos to query (max 100).
+ * @param lastUpdatedSince Filter by the DateTime at which a repo was last updated.
  */
 export const queryTopRepos = async ({
   lastUpdatedSince,
+  name,
   numRepos = 100,
   user,
 }: {
   lastUpdatedSince?: DateTime
+  name?: string
   numRepos?: number
   user: string
 }): Promise<DockerHubRepo[]> => {
@@ -94,26 +100,35 @@ export const queryTopRepos = async ({
     throw new RangeError('Number of repos to query cannot exceed 100.')
   }
 
-  const listReposURL = createUserReposListURL(user)
-  const repos = await axios.get(listReposURL, {
-    params: { page: 1, page_size: numRepos },
-  })
+  if (name && !R.isEmpty(name)) {
+    const listReposURL = `${DOCKER_HUB_API_ROOT}repositories/${user}/${name}/`
+    const repoResults = await axios.request({ url: listReposURL })
+    const repo: DockerHubAPIRepo = R.prop('data', repoResults)
+    return extractRepositoryDetails([repo], lastUpdatedSince)
+  } else {
+    const listReposURL = createUserReposListURL(user)
+    const repoResults = await axios.get(listReposURL, {
+      params: { page: 1, page_size: numRepos },
+    })
+    const repos: DockerHubAPIRepo[] = R.path(
+      ['data', 'results'],
+      repoResults,
+    ) as DockerHubAPIRepo[]
 
-  const repoResults: DockerHubAPIRepo[] = R.path(
-    ['data', 'results'],
-    repos,
-  ) as DockerHubAPIRepo[]
-
-  return extractRepositoryDetails(repoResults, lastUpdatedSince)
+    return extractRepositoryDetails(repos, lastUpdatedSince)
+  }
 }
 
+/**
+ * Query image tags.
+ */
 export const queryTags = async (repo: DockerHubRepo): Promise<Tag[]> => {
   const repoUrl = createUserReposListURL(repo.user)
   const tagsUrl = `${repoUrl}/${repo.name}/tags?page_size=100`
   const tagsResults = await axios.get(tagsUrl)
   const tags = R.path(['data', 'results'], tagsResults)
   // @ts-ignore
-  return tags ? camelcaseKeys(tags) : []
+  return tags && !R.isEmpty(tags) ? camelcaseKeys(tags) : []
 }
 
 /**

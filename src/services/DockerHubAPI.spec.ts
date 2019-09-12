@@ -15,7 +15,7 @@ import {
   queryTopRepos,
 } from './DockerHubAPI'
 
-const get = jest.spyOn(axios, 'get')
+const get = jest.spyOn(axios, 'get').mockResolvedValue({})
 const logInfo = jest.spyOn(log, 'info')
 
 const repoFixtures = fixture.data.results
@@ -25,7 +25,7 @@ describe('DockerHub handler', () => {
     jest.resetAllMocks()
   })
 
-  test('extractRepositoryDetails for a non-existant repo', () => {
+  test('extractRepositoryDetails for a non-existent repo', () => {
     const repositoryDetails = extractRepositoryDetails([])
     expect(repositoryDetails).toHaveLength(0)
   })
@@ -126,6 +126,19 @@ describe('DockerHub handler', () => {
     expect(get).toHaveBeenCalledTimes(0)
   })
 
+  test('queryTopRepos, limit results by name', async () => {
+    get.mockResolvedValueOnce(fixture)
+
+    const topRepos = await queryTopRepos({
+      name: 'minio',
+      user: 'jessestuart',
+    })
+    const topRepo = R.head(topRepos)
+
+    expect(get).toHaveBeenCalledTimes(0)
+    expect(topRepo).toMatchSnapshot()
+  })
+
   test('fetchManifestList happy path.', async () => {
     get.mockResolvedValueOnce({ data: { token: 'FAKE_TOKEN' } })
     get.mockResolvedValueOnce(manifestFixture)
@@ -199,7 +212,7 @@ describe('DockerHub handler', () => {
     expect(tags).toMatchSnapshot()
   })
 
-  test('queryTags happy path.', async () => {
+  test('queryTags (null result).', async () => {
     get.mockResolvedValueOnce([])
     const repos = R.path(['data', 'results'], fixture)
     // @ts-ignore

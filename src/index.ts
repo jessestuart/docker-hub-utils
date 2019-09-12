@@ -16,6 +16,8 @@ import {
   queryTopRepos,
 } from './services/DockerHubAPI'
 
+import { DOCKER_HUB_API_AUTH_URL, DOCKER_HUB_API_ROOT } from './utils/constants'
+
 export {
   Architecture,
   DockerHubAPIRepo,
@@ -33,3 +35,5 @@ export {
   queryTags,
   queryTopRepos,
 }
+
+export { DOCKER_HUB_API_ROOT, DOCKER_HUB_API_AUTH_URL }
