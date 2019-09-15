@@ -1,0 +1,9 @@
+[ver:1,total:5040]
+.gtm/terminal.app:2367,1568311200:360,1568314800:180,1568336400:360,1568343600:300,1568516400:760,1568520000:407,r
+src/services/DockerHubAPI.spec.ts:1220,1568516400:835,1568520000:385,m
+src/services/__fixtures__/DockerHubRepoFixtures.ts:760,1568516400:760,d
+src/services/DockerHubAPI.ts:315,1568516400:155,1568520000:160,m
+.eslintrc.js:150,1568343600:150,r
+.circleci/config.yml:90,1568343600:90,r
+src/types/DockerHubRepo.ts:78,1568516400:70,1568520000:8,r
+src/__tests__/repos_fixture.json:60,1568516400:60,r
