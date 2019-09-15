@@ -59,6 +59,24 @@ Object {
 }
 `;
 
+exports[`DockerHub handler queryRepo (limit results by name) 1`] = `
+Object {
+  "canEdit": false,
+  "description": "Minio server — supports arm (arm32v6, arm32v7, armhf) arm64 (aarch64), and amd64 architectures.",
+  "isAutomated": false,
+  "isMigrated": false,
+  "isPrivate": false,
+  "lastUpdated": "2019-07-26T00:25:28.724882Z",
+  "name": "minio",
+  "namespace": "jessestuart",
+  "pullCount": 74836,
+  "repositoryType": "image",
+  "starCount": 3,
+  "status": 1,
+  "user": "jessestuart",
+}
+`;
+
 exports[`DockerHub handler queryTags happy path. 1`] = `
 Array [
   Object {
@@ -3306,71 +3324,4 @@ Array [
     "user": "jessestuart",
   },
 ]
-`;
-
-exports[`DockerHub handler queryTopRepos, limit results by name 1`] = `
-Object {
-  "affiliation": null,
-  "canEdit": false,
-  "description": "Minio server — supports arm (arm32v6, arm32v7, armhf) arm64 (aarch64), and amd64 architectures.",
-  "fullDescription": "### Minio Server on Docker ARM / ARM64
-[Minio][minio-home] is an OSS project offering a \\"high performance distributed object
-storage server\\", with fabulous features like an S3-compliant API, excellent
-documentation, and out-of-the-box support for Docker, K8S, and most major
-cloud providers (as well as self-hosting, of course).
-
-One of the few things they *don't* provide is a ready-to-run Docker image
-compatible with ARM architectures. Luckily, it's easy enough to build our own,
-since they do provide a precompiled binary for ARM (although its release cycle
-tends to lag behind x64/AMD).
-
-### How can I use this?
-You can run the following command on an ARM-based system to stand up
-a standalone instance of Minio Server on Docker:
-
-\`\`\`bash
-docker run \\\\
-  -v /export/minio \\\\
-  -v /export/minio-config:/root/.minio \\\\
-  -p 9000:9000 \\\\
-  jessestuart/minio server /export
-\`\`\`
-
-Alternatively, you can build locally to ensure you're pulling the latest stable binary:
-
-\`\`\`
-git clone https://github.com/jessestuart/minio
-cd minio
-docker build -t minio .
-# ---------------------------------------
-# Or to push to your Docker Hub (or quay.io, etc) account to make the image
-# publicly accessible:
-docker build -t {your_username}/minio .
-docker push {your_username}/minio .
-\`\`\`
-
------------------------
-
-This image can also be used to deploy a Minio pod to a Kubernetes cluster. See the [official docs][minio-k8s] on deploying Minio to Kubernetes for more detail, or check out the Minio [Helm chart](https://github.com/kubernetes/charts/tree/master/stable/minio) documentation if that's your jam.
-
-[minio-home]: https://minio.io
-[minio-k8s]: https://docs.minio.io/docs/deploy-minio-on-kubernetes",
-  "hasStarred": false,
-  "isAutomated": false,
-  "isMigrated": false,
-  "isPrivate": false,
-  "lastUpdated": "2019-09-12T00:28:06.387088Z",
-  "name": "minio",
-  "namespace": "jessestuart",
-  "permissions": Object {
-    "admin": false,
-    "read": true,
-    "write": false,
-  },
-  "pullCount": 109046,
-  "repositoryType": "image",
-  "starCount": 3,
-  "status": 1,
-  "user": "jessestuart",
-}
 `;

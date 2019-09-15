@@ -76,23 +76,43 @@ export const extractRepositoryDetails = (
 }
 
 /**
+ * Query a single repository given a repo name and username.
+ *
+ * @param user The DockerHub username or org name to query for.
+ * @param name The DockerHub repo name -- restrict to this single repo.
+ */
+export const queryRepo = async ({
+  name,
+  user,
+}: {
+  name: string
+  user: string
+}): Promise<DockerHubRepo | undefined> => {
+  const repoResult = await axios.request({
+    url: `${DOCKER_HUB_API_ROOT}repositories/${user}/${name}/`,
+  })
+  const repo: DockerHubRepo | undefined = R.prop('data', repoResult)
+  if (repoResult.status !== 200 || !repo || R.isEmpty(repo)) {
+    return
+  }
+  return (camelcaseKeys(repo) as unknown) as DockerHubRepo
+}
+
+/**
  * Top-level function for querying repositories.
  *
  * @TODO Rename to just `queryRepos`.
  *
  * @param user The DockerHub username or org name to query for.
- * @param name The DockerHub repo name -- restrict to this single repo.
  * @param numRepos The number of repos to query (max 100).
  * @param lastUpdatedSince Filter by the DateTime at which a repo was last updated.
  */
 export const queryTopRepos = async ({
   lastUpdatedSince,
-  name,
   numRepos = 100,
   user,
 }: {
   lastUpdatedSince?: DateTime
-  name?: string
   numRepos?: number
   user: string
 }): Promise<DockerHubRepo[]> => {
@@ -100,23 +120,16 @@ export const queryTopRepos = async ({
     throw new RangeError('Number of repos to query cannot exceed 100.')
   }
 
-  if (name && !R.isEmpty(name)) {
-    const listReposURL = `${DOCKER_HUB_API_ROOT}repositories/${user}/${name}/`
-    const repoResults = await axios.request({ url: listReposURL })
-    const repo: DockerHubAPIRepo = R.prop('data', repoResults)
-    return extractRepositoryDetails([repo], lastUpdatedSince)
-  } else {
-    const listReposURL = createUserReposListURL(user)
-    const repoResults = await axios.get(listReposURL, {
-      params: { page: 1, page_size: numRepos },
-    })
-    const repos: DockerHubAPIRepo[] = R.path(
-      ['data', 'results'],
-      repoResults,
-    ) as DockerHubAPIRepo[]
+  const listReposURL = createUserReposListURL(user)
+  const repoResults = await axios.get(listReposURL, {
+    params: { page: 1, page_size: numRepos },
+  })
+  const repos: DockerHubAPIRepo[] = R.path(
+    ['data', 'results'],
+    repoResults,
+  ) as DockerHubAPIRepo[]
 
-    return extractRepositoryDetails(repos, lastUpdatedSince)
-  }
+  return extractRepositoryDetails(repos, lastUpdatedSince)
 }
 
 /**

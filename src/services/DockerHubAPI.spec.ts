@@ -11,11 +11,13 @@ import log from '../utils/log'
 import {
   extractRepositoryDetails,
   fetchManifestList,
+  queryRepo,
   queryTags,
   queryTopRepos,
 } from './DockerHubAPI'
 
 const get = jest.spyOn(axios, 'get').mockResolvedValue({})
+const request = jest.spyOn(axios, 'request')
 const logInfo = jest.spyOn(log, 'info')
 
 const repoFixtures = fixture.data.results
@@ -126,17 +128,34 @@ describe('DockerHub handler', () => {
     expect(get).toHaveBeenCalledTimes(0)
   })
 
-  test('queryTopRepos, limit results by name', async () => {
-    get.mockResolvedValueOnce(fixture)
+  test('queryRepo (limit results by name)', async () => {
+    request.mockResolvedValueOnce({
+      data: R.head(fixture.data.results.filter((r: any) => r.name === 'minio')),
+      status: 200,
+    })
 
-    const topRepos = await queryTopRepos({
+    const repo: DockerHubRepo | undefined = await queryRepo({
       name: 'minio',
       user: 'jessestuart',
     })
-    const topRepo = R.head(topRepos)
+    expect(repo).not.toBeUndefined()
+    expect(request).toHaveBeenCalledTimes(1)
+    // eslint-disable-next-line
+    expect(repo!.name).toBe('minio')
+    expect(repo).toMatchSnapshot()
+  })
 
-    expect(get).toHaveBeenCalledTimes(0)
-    expect(topRepo).toMatchSnapshot()
+  test('queryRepo for non-existent repo', async () => {
+    request.mockResolvedValueOnce({
+      data: { detail: 'Object not found' },
+      status: 404,
+    })
+
+    const repo = await queryRepo({
+      name: 'not-a-repo-nope',
+      user: 'jessestuart',
+    })
+    expect(repo).toBeUndefined()
   })
 
   test('fetchManifestList happy path.', async () => {
