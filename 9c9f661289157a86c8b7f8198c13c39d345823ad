@@ -1,0 +1,8 @@
+[ver:1,total:3660]
+.gtm/terminal.app:3025,1568527200:90,1568530800:60,1568534400:960,1568538000:720,1568545200:180,1568631600:775,1568635200:240,r
+src/services/DockerHubAPI.ts:405,1568527200:30,1568631600:375,m
+src/index.ts:100,1568631600:100,r
+src/services/__snapshots__/DockerHubAPI.spec.ts.snap:60,1568631600:60,r
+src/types/DockerHubRepo.ts:30,1568631600:30,m
+src/__tests__/tags_fixture.json:20,1568631600:20,r
+src/services/DockerHubAPI.spec.ts:20,1568631600:20,r
