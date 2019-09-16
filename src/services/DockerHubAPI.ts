@@ -135,13 +135,18 @@ export const queryTopRepos = async ({
 /**
  * Query image tags.
  */
-export const queryTags = async (repo: DockerHubRepo): Promise<Tag[]> => {
+export const queryTags = async (
+  repo: DockerHubRepo,
+): Promise<Tag[] | undefined> => {
   const repoUrl = createUserReposListURL(repo.user)
   const tagsUrl = `${repoUrl}/${repo.name}/tags?page_size=100`
   const tagsResults = await axios.get(tagsUrl)
   const tags = R.path(['data', 'results'], tagsResults)
+  if (!tags || R.isEmpty(tags)) {
+    return
+  }
   // @ts-ignore
-  return tags && !R.isEmpty(tags) ? camelcaseKeys(tags) : []
+  return camelcaseKeys(tags)
 }
 
 /**

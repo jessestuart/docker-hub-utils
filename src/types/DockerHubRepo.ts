@@ -105,6 +105,7 @@ export interface DockerHubRepo {
   // Manifest type *may* be nested within this interface, but is usually
   // fetched and returned separately.
   readonly manifestList?: DockerManifestList
+  readonly tags?: Tag[]
 
   // =============================================
   // Other stuff that comes down through the API,

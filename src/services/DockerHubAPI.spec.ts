@@ -237,6 +237,6 @@ describe('DockerHub handler', () => {
     // @ts-ignore
     const repo: DockerHubRepo = R.find(R.propEq('name', 'minio'))(repos)
     const tags = await queryTags(repo)
-    expect(tags).toHaveLength(0)
+    expect(tags).toBeUndefined()
   })
 })
