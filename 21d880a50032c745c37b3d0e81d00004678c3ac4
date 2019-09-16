@@ -1,0 +1,4 @@
+[ver:1,total:420]
+.gtm/terminal.app:384,1568635200:360,1568646000:24,r
+src/index.ts:24,1568646000:24,m
+src/services/DockerHubAPI.ts:12,1568646000:12,r
