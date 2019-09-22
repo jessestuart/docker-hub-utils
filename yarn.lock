@@ -6043,10 +6043,10 @@ lunr@^2.3.6:
   resolved "https://registry.yarnpkg.com/lunr/-/lunr-2.3.6.tgz#f278beee7ffd56ad86e6e478ce02ab2b98c78dd5"
   integrity sha512-swStvEyDqQ85MGpABCMBclZcLI/pBIlu8FFDtmX197+oEgKloJ67QnB+Tidh0340HmLMs39c4GrkPY3cmkXp6Q==
 
-luxon@1.18.2:
-  version "1.18.2"
-  resolved "https://registry.yarnpkg.com/luxon/-/luxon-1.18.2.tgz#0f03d5f1f5fdd6ab74c2407533ffc12cd06827eb"
-  integrity sha512-Vanyg+CjU9mkSCYA+OZqh3VG3Cucy3ybw66RwVBTrHzCS3v/LZYsmxW14IyNPVhp1U7TIr7ogMKA1+PHzQasiQ==
+luxon@1.19.0:
+  version "1.19.0"
+  resolved "https://registry.yarnpkg.com/luxon/-/luxon-1.19.0.tgz#8b7d9087284bb1b1a02602449587edfc05a05fe4"
+  integrity sha512-8e+PTZI5+SyHGQE2kvd07lEm3nArzhueSjfHkZGJyFMlKpNKP0V6xjSGLwW+ZlujS71pmTYl+/dDXdzM0DvkUQ==
 
 macos-release@^2.2.0:
   version "2.3.0"
