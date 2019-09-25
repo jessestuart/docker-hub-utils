@@ -1105,10 +1105,10 @@
   resolved "https://registry.yarnpkg.com/@types/node/-/node-12.7.2.tgz#c4e63af5e8823ce9cc3f0b34f7b998c2171f0c44"
   integrity sha512-dyYO+f6ihZEtNPDcWNR1fkoTDf3zAK3lAABDze3mz6POyIercH0lEUawUFXlG8xaQZmm1yEBON/4TsYv/laDYg==
 
-"@types/node@12.7.7":
-  version "12.7.7"
-  resolved "https://registry.yarnpkg.com/@types/node/-/node-12.7.7.tgz#f9bd8c00fa9e1a8129af910fc829f6139c397d6c"
-  integrity sha512-4jUncNe2tj1nmrO/34PsRpZqYVnRV1svbU78cKhuQKkMntKB/AmdLyGgswcZKjFHEHGpiY8pVD8CuVI55nP54w==
+"@types/node@12.7.8":
+  version "12.7.8"
+  resolved "https://registry.yarnpkg.com/@types/node/-/node-12.7.8.tgz#cb1bf6800238898bc2ff6ffa5702c3cadd350708"
+  integrity sha512-FMdVn84tJJdV+xe+53sYiZS4R5yn1mAIxfj+DVoNiQjTYz1+OYmjwEZr1ev9nU0axXwda0QDbYl06QHanRVH3A==
 
 "@types/normalize-package-data@^2.4.0":
   version "2.4.0"
@@ -1129,12 +1129,12 @@
     "@types/pino-std-serializers" "*"
     "@types/sonic-boom" "*"
 
-"@types/ramda@0.26.23":
-  version "0.26.23"
-  resolved "https://registry.yarnpkg.com/@types/ramda/-/ramda-0.26.23.tgz#6eb4224531a725612faf3cfe594ebac53a34753a"
-  integrity sha512-O9SNCbs2zvf6OaPP3TERVBsSJJHF/+uTc3FpnLZCCqJAPvcolQyRtpLZGPz8zFi8TM53tL+ZIc012cpfZmpl9w==
+"@types/ramda@0.26.24":
+  version "0.26.24"
+  resolved "https://registry.yarnpkg.com/@types/ramda/-/ramda-0.26.24.tgz#91fc840e2b51468a5af096f582ac5761b4bd60bd"
+  integrity sha512-AzpYQznZDeAwLMCYNmGYR/qk6Z+wrvVxvXURIWztJGNY8RfEyKIcZST9Acyn5RsPmJu1fnhKwTSUkPFaVBoyhQ==
   dependencies:
-    ts-toolbelt "^3.8.75"
+    ts-toolbelt "^4.3.0"
 
 "@types/resolve@0.0.8":
   version "0.0.8"
@@ -9374,10 +9374,10 @@ ts-jest@^24.0.2:
     semver "^5.5"
     yargs-parser "10.x"
 
-ts-toolbelt@^3.8.75:
-  version "3.11.0"
-  resolved "https://registry.yarnpkg.com/ts-toolbelt/-/ts-toolbelt-3.11.0.tgz#5e8eb060a45cfad95eb0f6f3538cee136209f70e"
-  integrity sha512-OJ+baLKTSsXgao7weQdjbGIAEjriPWKy63zZQhRNvtslYA4igN8gHn/6B71NQlSzB0Lt0/tolJfaL6Dc38cESw==
+ts-toolbelt@^4.3.0:
+  version "4.4.7"
+  resolved "https://registry.yarnpkg.com/ts-toolbelt/-/ts-toolbelt-4.4.7.tgz#e2b1c98ce5b1b98ad5c64db542ef9e81abacd92a"
+  integrity sha512-1sSqBUiQouoJwGVLzcgz8jTCi2vGCgeQ+UQrNr7oCFRjI4KoQlqtof/wxDPtSKmF+0VQHwk7PBAXIcVNGC/wEA==
 
 tsdx@0.9.2:
   version "0.9.2"
