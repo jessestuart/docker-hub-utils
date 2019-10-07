@@ -1120,19 +1120,19 @@
   resolved "https://registry.yarnpkg.com/@types/pino-std-serializers/-/pino-std-serializers-2.4.0.tgz#8cad99175cb79c2448f7455a2d32fb3fde29579c"
   integrity sha512-eAdu+NW1IkCdmp85SnhyKha+OOREQMT9lXaoICQxa7bhSauRiLzu3WSNt9Mf2piuJvWeXF/G0hGWHr63xNpIRA==
 
-"@types/pino@5.8.10":
-  version "5.8.10"
-  resolved "https://registry.yarnpkg.com/@types/pino/-/pino-5.8.10.tgz#42061f8ca77327f97841ac673987d64c6ce8b3f7"
-  integrity sha512-pw9ZxNyeVcVwSZJNCcpFz9RKNi8Ymv76hbwsEzrxZOAxM/EV8TjMdQXcpJ3sBzlFL2WSZ9HGCFt2PMSQjV98ug==
+"@types/pino@5.8.11":
+  version "5.8.11"
+  resolved "https://registry.yarnpkg.com/@types/pino/-/pino-5.8.11.tgz#3342176dab9cc103972dd666522ada65ef3c8c8f"
+  integrity sha512-6BKUYeJVk5l8vfQ4h+/CRVApd8KBwbGQtPWWAV15wCd6aaSGrvSJHL0J1P9S73EBlmOH9t7LsFdI7TMT4zqelQ==
   dependencies:
     "@types/node" "*"
     "@types/pino-std-serializers" "*"
     "@types/sonic-boom" "*"
 
-"@types/ramda@0.26.26":
-  version "0.26.26"
-  resolved "https://registry.yarnpkg.com/@types/ramda/-/ramda-0.26.26.tgz#cf5c2fa9bfbae8f81be7dfaa19e08d31452f5e4b"
-  integrity sha512-jDx2Lp2WvziMTcDxOU21yzRr6jP/VTWvpg6SQxeM63VldSjugUY1N9p1Q8YY/wpGvqzpkstUFmg2oGJdBSp5gg==
+"@types/ramda@0.26.27":
+  version "0.26.27"
+  resolved "https://registry.yarnpkg.com/@types/ramda/-/ramda-0.26.27.tgz#548b798b733f306a28257880762c3ef751c8fc60"
+  integrity sha512-9H/s9RI5kPnCiOAif996VdfQZIT192ATISOwQSqAq3N7UvPYNn9Zchuq3zNsyiweN9JPKGJ5aplgllqZotEGMQ==
   dependencies:
     ts-toolbelt "^4.7.7"
 
