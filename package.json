@@ -35,7 +35,7 @@
     "semantic-release": "15.13.24",
     "source-map-support": "0.5.13",
     "ts-jest": "24.1.0",
-    "tsdx": "0.9.3",
+    "tsdx": "0.10.0",
     "tslib": "1.10.0",
     "tslint": "5.20.0",
     "tslint-config-prettier": "1.18.0",
