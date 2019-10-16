@@ -9033,10 +9033,10 @@ ts-toolbelt@^4.7.7:
   resolved "https://registry.yarnpkg.com/ts-toolbelt/-/ts-toolbelt-4.7.19.tgz#98d2a7f731182e7d9cca90183472736e4c659445"
   integrity sha512-qIqDUMilFyqyVftvpsgIvQ1wI6uAfZ1XPidQjnHK1sRw3hJqzAkEZplEnKJuatuB8bkuJ+eVpbgXwKTvct0kWA==
 
-tsdx@0.10.3:
-  version "0.10.3"
-  resolved "https://registry.yarnpkg.com/tsdx/-/tsdx-0.10.3.tgz#91f953e842e07406dd3cfe3ad64b311dd60252fb"
-  integrity sha512-FANpRsDLsb2MhzpuH8vlwrZXr6F3Y32vZPScoDjXeaKYUiuVN8vo7c6FFjspm919FOmWrPDnzul/jTmvfI77KA==
+tsdx@0.10.5:
+  version "0.10.5"
+  resolved "https://registry.yarnpkg.com/tsdx/-/tsdx-0.10.5.tgz#339ac9313425e61d41578909ee978919ad228a68"
+  integrity sha512-scz5Lm1wGYIVLS4v8fyIYc4o0YkY+U2iu0CgRArCcf2517MgWxU20yNDsqrzq2bmOWrycfHjCqtPMGXvHDDIog==
   dependencies:
     "@babel/core" "^7.4.4"
     "@babel/helper-module-imports" "^7.0.0"
@@ -9099,6 +9099,7 @@ tsdx@0.10.3:
     tiny-glob "^0.2.6"
     ts-jest "^24.0.2"
     tslib "^1.9.3"
+    typescript "^3.6.4"
 
 tslib@1.10.0, tslib@^1.10.0, tslib@^1.8.0, tslib@^1.8.1, tslib@^1.9.0, tslib@^1.9.3:
   version "1.10.0"
@@ -9209,7 +9210,7 @@ typescript@3.5.x:
   resolved "https://registry.yarnpkg.com/typescript/-/typescript-3.5.3.tgz#c830f657f93f1ea846819e929092f5fe5983e977"
   integrity sha512-ACzBtm/PhXBDId6a6sDJfroT2pOWt/oOnk4/dElG5G33ZL776N3Y6/6bKZJBFpd+b05F3Ct9qDjMeJmRWtE2/g==
 
-typescript@3.6.4:
+typescript@3.6.4, typescript@^3.6.4:
   version "3.6.4"
   resolved "https://registry.yarnpkg.com/typescript/-/typescript-3.6.4.tgz#b18752bb3792bc1a0281335f7f6ebf1bbfc5b91d"
   integrity sha512-unoCll1+l+YK4i4F8f22TaNVPRHcD9PA3yCuZ8g5e0qGqlVlJ/8FSateOLLSagn+Yg5+ZwuPkL8LFUc0Jcvksg==
