@@ -32,7 +32,7 @@
     "nodemon": "1.19.4",
     "prettier": "1.18.2",
     "pretty-quick": "2.0.0",
-    "semantic-release": "15.13.29",
+    "semantic-release": "15.13.30",
     "source-map-support": "0.5.16",
     "ts-jest": "24.1.0",
     "tsdx": "0.11.0",
