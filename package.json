@@ -13,9 +13,9 @@
   "devDependencies": {
     "@semantic-release/git": "7.0.18",
     "@types/axios": "0.14.0",
-    "@types/jest": "24.0.21",
+    "@types/jest": "24.0.22",
     "@types/luxon": "1.15.2",
-    "@types/node": "12.12.5",
+    "@types/node": "12.12.6",
     "@types/pino": "5.8.13",
     "@types/ramda": "0.26.33",
     "@typescript-eslint/eslint-plugin": "canary",
