@@ -30,7 +30,7 @@
     "jest": "24.9.0",
     "jest-junit": "9.0.0",
     "nodemon": "1.19.4",
-    "prettier": "1.18.2",
+    "prettier": "1.19.0",
     "pretty-quick": "2.0.1",
     "semantic-release": "15.13.30",
     "source-map-support": "0.5.16",
