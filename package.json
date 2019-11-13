@@ -17,7 +17,7 @@
     "@types/luxon": "1.15.2",
     "@types/node": "12.12.7",
     "@types/pino": "5.8.13",
-    "@types/ramda": "0.26.33",
+    "@types/ramda": "0.26.34",
     "@typescript-eslint/eslint-plugin": "canary",
     "@typescript-eslint/parser": "canary",
     "codecov": "3.6.1",
