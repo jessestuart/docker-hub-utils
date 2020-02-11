@@ -1563,18 +1563,7 @@
   dependencies:
     "@types/yargs-parser" "*"
 
-"@typescript-eslint/eslint-plugin@2.19.1-alpha.3":
-  version "2.19.1-alpha.3"
-  resolved "https://registry.yarnpkg.com/@typescript-eslint/eslint-plugin/-/eslint-plugin-2.19.1-alpha.3.tgz#dd9eb69acd19e9da346e354cc59ee43dd690f7b6"
-  integrity sha512-ONzwssr+Ad03uhyH21z4H/MO/heMYCTB4D6xTSBL9hzxcOeZtxbT1L8ZiVBKvNW9fwQmm0AvODVGsCpcaG6pmg==
-  dependencies:
-    "@typescript-eslint/experimental-utils" "2.19.1-alpha.3+4c12dac0"
-    eslint-utils "^1.4.3"
-    functional-red-black-tree "^1.0.1"
-    regexpp "^3.0.0"
-    tsutils "^3.17.1"
-
-"@typescript-eslint/eslint-plugin@^2.12.0":
+"@typescript-eslint/eslint-plugin@2.19.2", "@typescript-eslint/eslint-plugin@^2.12.0":
   version "2.19.2"
   resolved "https://registry.yarnpkg.com/@typescript-eslint/eslint-plugin/-/eslint-plugin-2.19.2.tgz#e279aaae5d5c1f2547b4cff99204e1250bc7a058"
   integrity sha512-HX2qOq2GOV04HNrmKnTpSIpHjfl7iwdXe3u/Nvt+/cpmdvzYvY0NHSiTkYN257jHnq4OM/yo+OsFgati+7LqJA==
@@ -1585,15 +1574,6 @@
     regexpp "^3.0.0"
     tsutils "^3.17.1"
 
-"@typescript-eslint/experimental-utils@2.19.1-alpha.3+4c12dac0":
-  version "2.19.1-alpha.3"
-  resolved "https://registry.yarnpkg.com/@typescript-eslint/experimental-utils/-/experimental-utils-2.19.1-alpha.3.tgz#103d098c8cd9c8512cff60f7fff9b5c3718604d9"
-  integrity sha512-E7xYqVCx8BrTFIapvTap07j4VObz3ABKNqMG71X7aZUt97H793ZICOsP9sT7vCcvTMRcCL3XoSKHsBl0LoBBxg==
-  dependencies:
-    "@types/json-schema" "^7.0.3"
-    "@typescript-eslint/typescript-estree" "2.19.1-alpha.3+4c12dac0"
-    eslint-scope "^5.0.0"
-
 "@typescript-eslint/experimental-utils@2.19.2":
   version "2.19.2"
   resolved "https://registry.yarnpkg.com/@typescript-eslint/experimental-utils/-/experimental-utils-2.19.2.tgz#4611d44cf0f0cb460c26aa7676fc0a787281e233"
@@ -1603,17 +1583,7 @@
     "@typescript-eslint/typescript-estree" "2.19.2"
     eslint-scope "^5.0.0"
 
-"@typescript-eslint/parser@2.19.1-alpha.3":
-  version "2.19.1-alpha.3"
-  resolved "https://registry.yarnpkg.com/@typescript-eslint/parser/-/parser-2.19.1-alpha.3.tgz#eade73e232a87ba02dd567d1b688cb22474a3df6"
-  integrity sha512-FKjMgz7ZhdEetcT+2UG5uVhCiu09Ny31HgpDxdx+kUsLvmYhXkIDJJXiELDTGZIy+DJOl/J8zlUjjrZ84lN2Cw==
-  dependencies:
-    "@types/eslint-visitor-keys" "^1.0.0"
-    "@typescript-eslint/experimental-utils" "2.19.1-alpha.3+4c12dac0"
-    "@typescript-eslint/typescript-estree" "2.19.1-alpha.3+4c12dac0"
-    eslint-visitor-keys "^1.1.0"
-
-"@typescript-eslint/parser@^2.12.0":
+"@typescript-eslint/parser@2.19.2", "@typescript-eslint/parser@^2.12.0":
   version "2.19.2"
   resolved "https://registry.yarnpkg.com/@typescript-eslint/parser/-/parser-2.19.2.tgz#21f42c0694846367e7d6a907feb08ab2f89c0879"
   integrity sha512-8uwnYGKqX9wWHGPGdLB9sk9+12sjcdqEEYKGgbS8A0IvYX59h01o8os5qXUHMq2na8vpDRaV0suTLM7S8wraTA==
@@ -1622,19 +1592,6 @@
     "@typescript-eslint/experimental-utils" "2.19.2"
     "@typescript-eslint/typescript-estree" "2.19.2"
     eslint-visitor-keys "^1.1.0"
-
-"@typescript-eslint/typescript-estree@2.19.1-alpha.3+4c12dac0":
-  version "2.19.1-alpha.3"
-  resolved "https://registry.yarnpkg.com/@typescript-eslint/typescript-estree/-/typescript-estree-2.19.1-alpha.3.tgz#e35a77ae11650015e4dce996102aff6ddf27f71d"
-  integrity sha512-FhW4xfVBl/yUtB7gT745RP7yT5MF6DFl2e5PgFUMNU5H9b8tEFZEUJjbYefO59McEZxUdZ5/bmloZFZEjyQ7QQ==
-  dependencies:
-    debug "^4.1.1"
-    eslint-visitor-keys "^1.1.0"
-    glob "^7.1.6"
-    is-glob "^4.0.1"
-    lodash "^4.17.15"
-    semver "^6.3.0"
-    tsutils "^3.17.1"
 
 "@typescript-eslint/typescript-estree@2.19.2":
   version "2.19.2"
