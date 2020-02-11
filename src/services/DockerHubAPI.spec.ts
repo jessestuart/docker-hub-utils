@@ -1,13 +1,8 @@
-import axios from 'axios'
 import { DateTime } from 'luxon'
 import R from 'ramda'
+import axios from 'axios'
 
-import manifestFixture from '../__tests__/manifest_fixture.json'
-import fixture from '../__tests__/repos_fixture.json'
-import repoFixturesInvalid from '../__tests__/repos_fixtures_invalid.json'
-import tagsFixture from '../__tests__/tags_fixture.json'
 import { DockerHubRepo } from '../types/DockerHubRepo'
-import log from '../utils/log'
 import {
   extractRepositoryDetails,
   fetchManifestList,
@@ -15,6 +10,11 @@ import {
   queryTags,
   queryTopRepos,
 } from './DockerHubAPI'
+import fixture from '../__tests__/repos_fixture.json'
+import log from '../utils/log'
+import manifestFixture from '../__tests__/manifest_fixture.json'
+import repoFixturesInvalid from '../__tests__/repos_fixtures_invalid.json'
+import tagsFixture from '../__tests__/tags_fixture.json'
 
 const get = jest.spyOn(axios, 'get').mockResolvedValue({})
 const request = jest.spyOn(axios, 'request')
@@ -68,10 +68,7 @@ describe('DockerHub handler', () => {
     const totalPulls = R.sum(R.pluck('pullCount', topRepos))
     expect(totalPulls).toMatchSnapshot()
 
-    const topRepoName = R.pipe(
-      R.head,
-      R.path(['name']),
-    )(topRepos)
+    const topRepoName = R.pipe(R.head, R.path(['name']))(topRepos)
 
     expect(topRepoName).toBe('owntracks')
   })
@@ -162,7 +159,7 @@ describe('DockerHub handler', () => {
     get.mockResolvedValueOnce({ data: { token: 'FAKE_TOKEN' } })
     get.mockResolvedValueOnce(manifestFixture)
 
-    const topRepo: DockerHubRepo = R.head(
+    const topRepo: DockerHubRepo | undefined = R.head(
       extractRepositoryDetails(repoFixtures),
     )
     if (!topRepo) {
@@ -198,9 +195,13 @@ describe('DockerHub handler', () => {
     get.mockResolvedValueOnce({ data: { token: 'FAKE_TOKEN' } })
     get.mockResolvedValueOnce({ data: { schemaVersion: 1 } })
 
-    const topRepo: DockerHubRepo = R.head(
+    const topRepo: DockerHubRepo | undefined = R.head(
       extractRepositoryDetails(repoFixtures),
     )
+    if (!topRepo) {
+      fail('Top repo is undefined.')
+      return
+    }
 
     const manifestList = await fetchManifestList(topRepo)
     expect(manifestList).toBeUndefined()
