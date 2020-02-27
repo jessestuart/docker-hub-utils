@@ -1502,12 +1502,12 @@
     "@types/pino-std-serializers" "*"
     "@types/sonic-boom" "*"
 
-"@types/ramda@0.26.42":
-  version "0.26.42"
-  resolved "https://registry.yarnpkg.com/@types/ramda/-/ramda-0.26.42.tgz#f002dc8c075a50cf9c267251a2042a0bf7303277"
-  integrity sha512-HjMKhIWHR6SPfAR24ghGkzoG/8aBRr1Pb7c2gskneuwgtDJBhO3KJ0tM0sLOX7gjf4LmQ3NLp6wTkDfjKEqimA==
+"@types/ramda@0.26.43":
+  version "0.26.43"
+  resolved "https://registry.yarnpkg.com/@types/ramda/-/ramda-0.26.43.tgz#62e235ea17133b8629bc891a26851cf0ea2b4204"
+  integrity sha512-VK2EaHR/fpeMNPDboGSPAmH+a6HN1pflWqRt67Jii2n8vGpYt6vxIBc1ZdoYrA/jQXRaGGpJKRiSPcHALRD3/A==
   dependencies:
-    ts-toolbelt "^6.1.11"
+    ts-toolbelt "^6.3.3"
 
 "@types/resolve@0.0.8":
   version "0.0.8"
@@ -9798,10 +9798,10 @@ ts-jest@^24.0.2:
     semver "^5.5"
     yargs-parser "10.x"
 
-ts-toolbelt@^6.1.11:
-  version "6.1.13"
-  resolved "https://registry.yarnpkg.com/ts-toolbelt/-/ts-toolbelt-6.1.13.tgz#12935bc8b81052e5e21eaddd35372e71320d7ee3"
-  integrity sha512-xfhXvHNMg9i0+L9aALC5kU+/H1eaLl5yydMe6m+2Danmfw/sIX+ixF7JTP4XSQRaG+Xd1idoTmcCVI0QmqZllQ==
+ts-toolbelt@^6.3.3:
+  version "6.3.5"
+  resolved "https://registry.yarnpkg.com/ts-toolbelt/-/ts-toolbelt-6.3.5.tgz#5cb4e0454ab954faa9b6e4d5bce366fdb262e364"
+  integrity sha512-Xvh/gvBBCRU1qGeholaN8kgiwBH4neyun6VIDDsJf/jNwz4PXyR8ZY/5qdpB1DuMBrWMG2oTT1oWcOzGPOnluQ==
 
 tsdx@0.12.3:
   version "0.12.3"
