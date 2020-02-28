@@ -38,7 +38,7 @@
     "tslib": "1.11.1",
     "tslint": "6.0.0",
     "tslint-config-prettier": "1.18.0",
-    "typedoc": "0.16.10",
+    "typedoc": "0.16.11",
     "typescript": "3.8.2"
   },
   "files": [
