@@ -1,7 +1,7 @@
 {
   "name": "docker-hub-utils",
   "description": "Typescript / Node utilities for interacting with the Docker Hub API.",
-  "version": "1.10.26",
+  "version": "1.10.27",
   "author": "Jesse Stuart <hi@jessestuart.com>",
   "dependencies": {
     "axios": "0.19.2",
