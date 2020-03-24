@@ -68,7 +68,7 @@
   },
   "scripts": {
     "build": "tsdx build",
-    "ci": "JEST_JUNIT_OUTPUT=reports/junit/js-test-results.xml jest --ci --runInBand --coverage --reporters=default --reporters=jest-junit",
+    "ci": "JEST_JUNIT_OUTPUT_DIR=reports/junit/ JEST_JUNIT_OUTPUT_NAME=results.xml jest --ci --runInBand --coverage --reporters=default --reporters=jest-junit",
     "docs": "typedoc --mode modules --out public",
     "lint": "eslint --quiet src/ --ext ts,tsx",
     "prepublishOnly": "yarn build",
