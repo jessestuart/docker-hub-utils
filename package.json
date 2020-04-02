@@ -36,7 +36,7 @@
     "ts-jest": "25.3.0",
     "tsdx": "0.13.1",
     "tslib": "1.11.1",
-    "tslint": "6.1.0",
+    "tslint": "6.1.1",
     "tslint-config-prettier": "1.18.0",
     "typedoc": "0.17.3",
     "typescript": "3.8.3"
