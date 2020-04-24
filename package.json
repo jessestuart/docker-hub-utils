@@ -32,7 +32,7 @@
     "prettier": "1.19.1",
     "pretty-quick": "2.0.1",
     "semantic-release": "17.0.7",
-    "source-map-support": "0.5.18",
+    "source-map-support": "0.5.19",
     "ts-jest": "25.4.0",
     "tsdx": "0.13.2",
     "tslib": "1.11.1",
