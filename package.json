@@ -14,7 +14,7 @@
     "@semantic-release/git": "9.0.0",
     "@types/jest": "25.2.1",
     "@types/luxon": "1.24.0",
-    "@types/node": "13.13.5",
+    "@types/node": "13.13.6",
     "@types/pino": "5.20.0",
     "@types/ramda": "0.27.4",
     "@typescript-eslint/eslint-plugin": "2.33.0",
