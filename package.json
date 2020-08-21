@@ -4,7 +4,7 @@
   "version": "1.10.34",
   "author": "Jesse Stuart <hi@jessestuart.com>",
   "dependencies": {
-    "axios": "0.19.2",
+    "axios": "0.20.0",
     "camelcase-keys": "6.2.2",
     "luxon": "1.24.1",
     "pino": "5.17.0",
