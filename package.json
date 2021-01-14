@@ -13,8 +13,8 @@
   "devDependencies": {
     "@semantic-release/git": "9.0.0",
     "@types/jest": "25.2.3",
-    "@types/luxon": "1.25.0",
-    "@types/node": "13.13.39",
+    "@types/luxon": "1.25.1",
+    "@types/node": "13.13.40",
     "@types/pino": "5.20.0",
     "@types/ramda": "0.27.34",
     "@typescript-eslint/eslint-plugin": "2.34.0",
