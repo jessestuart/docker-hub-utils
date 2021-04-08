@@ -16,7 +16,7 @@
     "@types/luxon": "1.26.3",
     "@types/node": "13.13.48",
     "@types/pino": "5.20.0",
-    "@types/ramda": "0.27.39",
+    "@types/ramda": "0.27.40",
     "@typescript-eslint/eslint-plugin": "2.34.0",
     "@typescript-eslint/parser": "2.34.0",
     "codecov": "3.8.1",
