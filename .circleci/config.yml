@@ -32,7 +32,7 @@ workflows:
 # ====================
 docker_image: &docker_image
   docker:
-    - image: node:12
+    - image: node:16
   working_directory: /root/docker-hub-utils/
 
 restore_cache: &restore_cache
